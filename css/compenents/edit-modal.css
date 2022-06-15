@@ -1,0 +1,25 @@
+.edit-modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--clr3);
+	width: 900px;
+	height: 900px;
+	grid-template-columns: 1fr 1fr;
+	place-items: center; /* this line is OP */
+	pointer-events: none;
+	opacity: 0;
+}
+
+.edit-modal canvas {
+	background: #000;
+	width: 90%;
+	height: 90%;
+}
+
+.edit-modal .option-container {
+	background-color: #fff;
+	width: 90%;
+	height: 90%;
+}

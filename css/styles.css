@@ -12,7 +12,8 @@
 @import 'compenents/header.css';
 @import 'compenents/box.css';
 @import 'compenents/footer.css';
-@import 'compenents/main-content.css';
+@import 'compenents/gallery.css';
+@import 'compenents/edit-modal.css';
 @import 'compenents/screens.css';
 
 /* MEDIA QUERIES */
