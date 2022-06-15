@@ -12,6 +12,7 @@
 	align-items: center;
 	gap: 40px;
 	border-radius: 1rem;
+	/* display: none; */
 }
 /* .img-gallery-bg {
 	position: absolute;

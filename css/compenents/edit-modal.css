@@ -19,7 +19,53 @@
 }
 
 .edit-modal .option-container {
-	background-color: #fff;
+	background-color: #ae3d51;
 	width: 90%;
 	height: 90%;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(6, 1fr);
+}
+
+.edit-modal .option-container > * {
+	justify-self: center;
+	align-self: center;
+	font-size: 1.5rem;
+}
+.txt-input {
+	grid-column: 1 / 5;
+}
+/* .option-up {
+}
+.option-down {
+}
+
+.option-plus {
+}
+.option-delete {
+} */
+
+.option-btn-container {
+	grid-row: 3/5;
+	grid-column: 1 / 5;
+	width: 100%;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.option-btn-container .impact {
+	grid-column: 1 / 4;
+}
+.option-btn-container .impact select {
+	width: 100%;
+	height: 100%;
+}
+.sticker-container {
+	width: 100%;
+	justify-content: space-around;
+	grid-row: 5;
+	grid-column: 1 / 5;
+	background-color: black;
+}
+/* .share {
+} */
+.download {
+	grid-column: 4;
 }
