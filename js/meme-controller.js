@@ -3,24 +3,32 @@
 let gElCanvas
 let gCtx
 
-function onOpenEditor(id) {
+function onImgSelect(id) {
 	initCanvas()
-	const elGallery = document.querySelector('.img-gallery ')
-	const elEditModal = document.querySelector('.edit-modal')
 	let meme = getMeme()
 	if (!meme || !(meme.selectedImgId === id)) meme = setNewMeme(id)
 	renderMeme(id)
+	openEditModal()
+}
+
+function openEditModal() {
+	const elGallery = document.querySelector('.img-gallery ')
+	const elEditModal = document.querySelector('.edit-modal')
 	elGallery.style.display = 'none'
 	elEditModal.style.pointerEvents = 'auto'
 	elEditModal.style.opacity = '1'
 }
 
 function renderMeme(id) {
+	const meme = getMeme(id)
+	setImg(id)
+	renderImgTxt(meme)
+}
+
+function setImg(id) {
 	const img = getImageById(id)
 	const elImg = getImgEl(img)
-	let meme = getMeme(id)
 	renderImg(elImg)
-	renderImgTxt(meme)
 }
 
 function getImgEl(img) {

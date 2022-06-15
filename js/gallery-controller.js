@@ -6,7 +6,7 @@ function renderMemeGallery() {
 	//add containers to gallery
 	const elGallery = document.querySelector('.img-gallery')
 	gImgs.forEach(img => {
-		elGallery.innerHTML += `<div onclick='onOpenEditor(${img.id})' class="img img${img.id}"></div>`
+		elGallery.innerHTML += `<div onclick='onImgSelect(${img.id})' class="img img${img.id}"></div>`
 	})
 
 	// add background image to containers

@@ -1,29 +1,44 @@
 .edit-modal {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	margin: auto;
 	background-color: var(--clr3);
-	width: 900px;
-	height: 900px;
 	grid-template-columns: 1fr 1fr;
-	place-items: center; /* this line is OP */
+	place-items: center;
+	justify-content: space-around;
 	pointer-events: none;
 	opacity: 0;
+	padding: 5px;
+	min-height: 800px;
+}
+.edit-modal * {
+	font-family: koulen, sans-serif;
+	font-size: 1.2rem;
+	/* if I don't do these font gets overridden by default  */
+}
+.edit-modal *:focus {
+	color: var(--clr3);
+	background-color: #281a1e;
+}
+.edit-modal .close-modal {
+	align-self: start;
+	width: 2rem;
+	border-radius: 0.8rem;
 }
 
 .edit-modal canvas {
-	background: #000;
-	width: 90%;
-	height: 90%;
+	width: 400px;
+	height: 400px;
+	box-shadow: 0px 0px 2px 3px #ae3d51;
+	margin-right: 20px;
 }
 
 .edit-modal .option-container {
 	background-color: #ae3d51;
-	width: 90%;
-	height: 90%;
+	min-height: 750px;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(6, 1fr);
+	/* justify-content: space-around;
+	align-items: center; 
+	? this doesn't work but style below does*/
 }
 
 .edit-modal .option-container > * {
@@ -32,13 +47,20 @@
 	font-size: 1.5rem;
 	width: 90%;
 	height: 90%;
+	border-radius: 0.8rem;
+	/* border: none; */
 }
 .txt-input {
 	grid-column: 1 / 5;
 	text-align: center;
 }
+.txt-input > * {
+	border-radius: 0.8rem;
+}
 .option-container .txt-input input {
 	font-size: 1.5rem;
+	margin-top: 25px;
+	border: none;
 }
 /* .option-up {
 }
@@ -53,8 +75,14 @@
 .option-btn-container {
 	grid-row: 3/5;
 	grid-column: 1 / 5;
-	width: 100%;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	background-color: #61222d;
+	place-items: center;
+}
+.option-btn-container > * {
+	width: 90%;
+	height: 90%;
+	border-radius: 0.8rem;
 }
 .option-btn-container .impact {
 	grid-column: 1 / 4;
@@ -70,7 +98,7 @@
 	align-items: center;
 	grid-row: 5;
 	grid-column: 1 / 5;
-	background-color: black;
+	background-color: #61222d;
 }
 /* .share {
 } */

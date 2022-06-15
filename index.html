@@ -10,21 +10,22 @@
 </head>
 
 <body onload="init()">
-    <header class="flex">
-        <div class="logo">
-            <p class="logo-meme"> Meme</p> Generator
-        </div>
+    <header class="flex main-layout">
+        <h1 class="logo">
+            <span class="logo-meme"> Meme</span> Generator
+        </h1>
         <span class="search-bar flex">
             <span>⚔</span>
             <input class="search-input" type="search" placeholder="Search...">
             <button class="search-btn">search</button></span>
     </header>
     <main>
-        <div class="img-gallery-container flex">
-            <div class="img-gallery  grid"></div>
+        <div class="img-gallery-container">
+            <div class="img-gallery main-layout grid"></div>
         </div>
 
-        <div class="edit-modal grid">
+        <div class="edit-modal flex main-layout">
+            <button class="close-modal" onclick="onCloseModal()">X</button>
             <canvas class="img-editor"></canvas>
             <div class="option-container grid">
                 <span class="txt-input">
@@ -43,9 +44,9 @@
                     <button>align-right</button>
                     <span class="impact"><select type="select">
                             <option value="1">Impact</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                            <option value="2">font</option>
+                            <option value="3">font</option>
+                            <option value="4">font</option>
                         </select>
                     </span>
                     <button>size</button>
@@ -65,14 +66,13 @@
 
     </main>
     <footer></footer>
-    <!-- <script src="js/services/edit.service.js"></script> -->
+
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/main.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
-    <script src="js/editor.js"></script>
 </body>
 
 </html>

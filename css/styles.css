@@ -6,15 +6,13 @@
 @import 'basic/base.css';
 @import 'basic/layout.css';
 @import 'basic/helpers.css';
-@import 'basic/buttons.css';
+/* @import 'basic/buttons.css'; */
 
 /* COMPONENTS */
 @import 'compenents/header.css';
 @import 'compenents/box.css';
-@import 'compenents/footer.css';
 @import 'compenents/gallery.css';
 @import 'compenents/edit-modal.css';
-@import 'compenents/screens.css';
 
 /* MEDIA QUERIES */
-@import 'mq/mq.css';
+/* @import 'mq/mq.css'; */
