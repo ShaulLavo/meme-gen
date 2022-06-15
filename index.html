@@ -27,7 +27,10 @@
         <div class="edit-modal grid">
             <canvas class="img-editor"></canvas>
             <div class="option-container grid">
-                <span class="txt-input"><input placeholder="Enter your text.." type="text"></span>
+                <span class="txt-input">
+                    <input placeholder="Enter your text.." type="text">
+                    <button onclick="onSetLineTxt()">submit</button>
+                </span>
                 <button class="option-up">up</button>
                 <button class="option-down">down</button>
                 <button class="option-plus">plus</button>
@@ -62,8 +65,10 @@
 
     </main>
     <footer></footer>
+    <!-- <script src="js/services/edit.service.js"></script> -->
+    <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
-    <script src="js/services/edit.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
     <script src="js/main.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>

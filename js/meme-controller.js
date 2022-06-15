@@ -7,6 +7,8 @@ function onOpenEditor(id) {
 	initCanvas()
 	const elGallery = document.querySelector('.img-gallery ')
 	const elEditModal = document.querySelector('.edit-modal')
+	let meme = getMeme()
+	if (!meme || !(meme.selectedImgId === id)) meme = setNewMeme(id)
 	renderMeme(id)
 	elGallery.style.display = 'none'
 	elEditModal.style.pointerEvents = 'auto'
@@ -16,8 +18,9 @@ function onOpenEditor(id) {
 function renderMeme(id) {
 	const img = getImageById(id)
 	const elImg = getImgEl(img)
+	let meme = getMeme(id)
 	renderImg(elImg)
-	renderImgTxt()
+	renderImgTxt(meme)
 }
 
 function getImgEl(img) {
@@ -41,9 +44,17 @@ function initCanvas() {
 	gCtx = gElCanvas.getContext('2d')
 }
 
-function renderImgTxt() {
+function renderImgTxt(meme) {
+	let line = meme.selectedLineIdx
 	gCtx.lineWidth = 2
 	gCtx.fillStyle = 'black'
-	gCtx.font = '50px Arial'
-	gCtx.fillText('Hello', 100, 100)
+	gCtx.font = '20px Arial'
+	gCtx.fillText(meme.lines[line].txt, 50, 50)
+}
+
+function onSetLineTxt() {
+	const txt = document.querySelector('.txt-input input').value
+	setLineTxt(txt)
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
 }
