@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .grid {
 	display: grid;
 }
@@ -5,3 +6,12 @@
 .flex {
 	display: flex;
 }
+=======
+.grid {
+	display: grid;
+}
+
+.flex {
+	display: flex;
+}
+>>>>>>> f474c49676bcd0727355cd3434d48b6de4646d1a

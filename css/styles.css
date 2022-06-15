@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* SETUP */
 @import 'setup/vars.css';
 @import 'setup/typography.css';
@@ -17,3 +18,24 @@
 
 /* MEDIA QUERIES */
 @import 'mq/mq.css';
+=======
+/* SETUP */
+@import 'setup/vars.css';
+@import 'setup/typography.css';
+
+/* BASE */
+@import 'basic/base.css';
+@import 'basic/layout.css';
+@import 'basic/helpers.css';
+@import 'basic/buttons.css';
+
+/* COMPONENTS */
+@import 'compenents/header.css';
+@import 'compenents/box.css';
+@import 'compenents/footer.css';
+@import 'compenents/main-content.css';
+@import 'compenents/screens.css';
+
+/* MEDIA QUERIES */
+@import 'mq/mq.css';
+>>>>>>> f474c49676bcd0727355cd3434d48b6de4646d1a
