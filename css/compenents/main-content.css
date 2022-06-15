@@ -1,7 +1,7 @@
 .img-gallery {
 	padding: 50px;
 	background-color: var(--clr3);
-	width: 90%;
+	/* width: 90%; */
 	position: absolute;
 	top: 50%;
 	left: 50%;

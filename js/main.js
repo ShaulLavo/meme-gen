@@ -12,18 +12,10 @@ function createMemeDb() {
 	for (let i = 0; i < gImgCount; i++) {
 		gImgs.push({
 			id: i,
-			url: `../../meme-imgs/${i}.jpg`,
+			url: `meme-imgs/${i}.jpg`,
 			keywords: ['funny', 'cat']
 		})
 	}
-	console.log(gImgs)
-}
-
-function renderMemeGallery() {
-	const elImgs = document.querySelectorAll('.img')
-	gImgs.forEach((img, idx) => {
-		elImgs[idx].style.backgroundImage = `url(${img.url})`
-	})
 }
 
 // const gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
