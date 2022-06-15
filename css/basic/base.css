@@ -1,0 +1,21 @@
+html {
+	font-family: 'Lato', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-size: 1.2rem;
+	line-height: 1.2;
+	background: var(--clr5);
+	background: var(--grad2);
+	color: white;
+}
+
+input {
+	font-size: 1.2rem;
+	line-height: 1.2;
+}
