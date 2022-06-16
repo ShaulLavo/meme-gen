@@ -1,13 +1,22 @@
-/* Eurofurencer */
+/*Game play */
 @font-face {
 	font-family: game-play;
 	src: url('../../fonts/Gameplay.ttf');
 }
-
-/* Font Awsome */
+/* Koulen */
 @font-face {
 	font-family: koulen;
 	src: url('../../fonts/Koulen.ttf');
 }
 
-/* helvetica for meme txt */
+/* Font Awesome */
+
+@font-face {
+	font-family: fa-reg;
+	src: url('../../fonts/fa/fa-regular-400.ttf');
+}
+
+@font-face {
+	font-family: fa-solid;
+	src: url('../../fonts/fa/fa-solid-900.ttf');
+}

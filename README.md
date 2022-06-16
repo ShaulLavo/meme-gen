@@ -1,2 +1,8 @@
 # meme-gen
-a meme genorator
+
+meme generator
+
+-⚡ Blazingly fast
+-🩸 bleeding edge
+-🌱 holistic approach
+-🤯 game changing

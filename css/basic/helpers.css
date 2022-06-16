@@ -5,3 +5,11 @@
 .flex {
 	display: flex;
 }
+
+.fa-solid {
+	font-family: fa-solid;
+}
+
+.fa-reg {
+	font-family: fa-reg;
+}

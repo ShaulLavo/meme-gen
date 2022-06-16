@@ -12,7 +12,7 @@ function createImgDb() {
 	for (let i = 0; i < gImgCount; i++) {
 		gImgs.push({
 			id: i,
-			url: `meme-imgs/${i}.jpg`,
+			url: `assets/meme-imgs/${i}.jpg`,
 			keywords: ['funny', 'cat']
 		})
 	}
