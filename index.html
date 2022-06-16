@@ -49,9 +49,9 @@
                     <input placeholder="Enter your text.." type="text">
                     <button onclick="onSetLineTxt()">submit</button>
                 </span>
-                <button onclick="on" class="option-up">up</button>
-                <button onclick="on" class="option-down">down</button>
-                <button onclick="on" class="option-plus">plus</button>
+                <button onmousedown="onMoveLineUp()" onmouseup="onStopLineUp()" class="option-up">up</button>
+                <button onmousedown="onMoveLineDown()" onmouseup="onStopLineDown()" class="option-down">down</button>
+                <button onclick="onAddLine()" class="option-add">plus</button>
                 <button onclick="on" class="option-delete">delete</button>
                 <div class="option-btn-container grid">
                     <button onclick="onFontInc()">A+</button>
@@ -59,15 +59,22 @@
                     <button onclick="onAlignLeft()">align-left</button>
                     <button onclick="onAlignCenter()">align-center</button>
                     <button onclick="onAlignRight()">align-right</button>
-                    <span class="impact"><select type="select">
-                            <option value="1">Impact</option>
-                            <option value="2">font</option>
-                            <option value="3">font</option>
-                            <option value="4">font</option>
+                    <span class="font-select">
+                        <select onchange="onFontSelect(this.value)" type="select">
+                            <option value="impact">Impact</option>
+                            <option value="arial">Arial</option>
+                            <option value="verdana">Verdana</option>
+                            <option value="'Times New Roman'">Times New Roman</option>
+                            <option value="'Courier New'">Courier New</option>
+                            <option value="'Brush Script MT'">Brush Script MT</option>
                         </select>
                     </span>
-                    <button>s</button>
-                    <button>color</button>
+                    <button>save</button>
+                    <span>
+                        <label for="favcolor">Select color:</label>
+                        <input onchange="onSetColor(this.value)" type="color" id="favcolor" name="favcolor"
+                            value="#ffffff">
+                    </span>
                 </div>
                 <div class="sticker-container flex">
                     <span>🎃</span>

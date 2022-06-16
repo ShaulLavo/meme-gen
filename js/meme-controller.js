@@ -2,8 +2,7 @@
 
 let gElCanvas
 let gCtx
-let gFont = 'Impact'
-let gFontSize = 200
+let gInterval
 //TODO remove globals from controller
 
 function initCanvas() {
@@ -12,7 +11,6 @@ function initCanvas() {
 }
 
 function onImgSelect(id) {
-	// gCurrImgId = id
 	initCanvas()
 	let meme = getMeme()
 	if (!meme || !(meme.selectedImgId === id)) setCurrMeme(id)
@@ -39,7 +37,7 @@ function renderMeme(id) {
 	const img = setImg(id)
 	// console.log(img)
 	renderImg(img)
-	renderImgTxt(meme)
+	renderLine(meme)
 }
 
 function renderImg(img) {
@@ -50,20 +48,20 @@ function renderImg(img) {
 	gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function renderImgTxt(meme) {
+function renderLine(meme) {
 	const line = meme.lines[meme.selectedLineIdx]
 	const sentence = line.txt
+	const { x, y } = line.pos
 	gCtx.font = `${line.size}px ${line.font}`
 	line.size = fitFontSize(sentence, line.font, line.size)
-	console.log(line.size)
 	gCtx.lineWidth = 4
-	gCtx.strokeStyle = 'white'
+	gCtx.strokeStyle = 'black'
 	gCtx.fillStyle = line.color
 	gCtx.lineJoin = 'round' //this prevents wired artifacts from stroke
 	gCtx.textAlign = line.align
 	gCtx.font = `${line.size}px ${line.font}`
-	gCtx.strokeText(sentence, gElCanvas.width / 2, gElCanvas.height / 2)
-	gCtx.fillText(sentence, gElCanvas.width / 2, gElCanvas.height / 2)
+	gCtx.strokeText(sentence, x, y)
+	gCtx.fillText(sentence, x, y)
 }
 
 function onSetLineTxt() {
@@ -97,6 +95,58 @@ function onAlignRight() {
 }
 function onAlignCenter() {
 	alignTxt('center')
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
+}
+
+function onMoveLineUp() {
+	//there is a bug when
+	//user releases the mouse outside the btn
+	//and interval goes off forever
+	gInterval = setInterval(() => {
+		moveLine(-2)
+		const meme = getMeme()
+		renderMeme(meme.selectedImgId)
+	}, 10)
+}
+
+function onStopLineUp() {
+	clearInterval(gInterval)
+}
+
+function onMoveLineDown() {
+	gInterval = setInterval(() => {
+		moveLine(2)
+		const meme = getMeme()
+		renderMeme(meme.selectedImgId)
+	}, 10)
+}
+
+function onStopLineDown() {
+	clearInterval(gInterval)
+}
+
+// ? what's wrong with this code?
+// onmousedown="onMoveLineUp(true)" onmouseup="onStopLineUp(false)"
+// function onMoveLineUp(isPressed) {
+// 	if (isPressed) {
+// 		const interval = setInterval(() => {
+// 			moveLine(-2)
+// 			const meme = getMeme()
+// 			renderMeme(meme.selectedImgId)
+// 		}, 100)
+// 	}
+// 	else clearInterval(interval)
+// }
+
+function onFontSelect(val) {
+	setFont(val)
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
+}
+
+function onSetColor(val) {
+	setColor(val)
 	const meme = getMeme()
 	renderMeme(meme.selectedImgId)
 }

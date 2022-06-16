@@ -32,8 +32,9 @@ function setCurrMeme(id) {
 				txt: getRandSentence(memesSentences),
 				size: 200,
 				align: 'center',
-				color: 'black',
-				font: 'Impact'
+				color: 'white',
+				font: 'Impact',
+				pos: { x: 250, y: 250 }
 			}
 		]
 	}
@@ -80,10 +81,34 @@ function fitFontSize(sentence, font, size) {
 }
 
 function setFontSize(num) {
-	if (gMeme.lines[gMeme.selectedLineIdx].size > 200) num *= 10 // make it easier to adjust big font size
+	if (gMeme.lines[gMeme.selectedLineIdx].size > 200) num *= 10 // make it easier to adjust big font sizes
 	gMeme.lines[gMeme.selectedLineIdx].size += num
 }
 
 function alignTxt(side) {
+	//TODO this aligns relative to center maybe just put text on edge of canvas
 	gMeme.lines[gMeme.selectedLineIdx].align = side
 }
+
+function moveLine(num) {
+	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+	currLine.pos.y += num
+}
+
+function setFont(font) {
+	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+	currLine.font = font
+	gMeme.isAutoFitSize = true //fit to new font size
+}
+
+function setColor(val) {
+	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+	currLine.color = val
+}
+
+// function setLinePos() {
+// 	const canvas = gElCanvas
+// 	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+// 	currLine.pos.x = canvas.width / 2
+// 	currLine.pos.y = canvas.height / 2
+// }
