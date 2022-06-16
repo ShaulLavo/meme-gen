@@ -55,13 +55,15 @@ function renderImgTxt(meme) {
 	const sentence = line.txt
 	gCtx.font = `${line.size}px ${line.font}`
 	line.size = fitFontSize(sentence, line.font, line.size)
+	console.log(line.size)
 	gCtx.lineWidth = 4
 	gCtx.strokeStyle = 'white'
 	gCtx.fillStyle = line.color
 	gCtx.lineJoin = 'round' //this prevents wired artifacts from stroke
+	gCtx.textAlign = line.align
 	gCtx.font = `${line.size}px ${line.font}`
-	gCtx.strokeText(sentence, 2, gElCanvas.height / 2)
-	gCtx.fillText(sentence, 2, gElCanvas.height / 2)
+	gCtx.strokeText(sentence, gElCanvas.width / 2, gElCanvas.height / 2)
+	gCtx.fillText(sentence, gElCanvas.width / 2, gElCanvas.height / 2)
 }
 
 function onSetLineTxt() {
@@ -81,12 +83,20 @@ function onFontDec() {
 	const meme = getMeme()
 	renderMeme(meme.selectedImgId)
 }
+
+// align left actually aligns right cus make more sense
 function onAlignLeft() {
-	alignTxt('left')
+	alignTxt('right')
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
 }
 function onAlignRight() {
-	alignTxt('right')
+	alignTxt('left')
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
 }
 function onAlignCenter() {
 	alignTxt('center')
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
 }

@@ -17,7 +17,6 @@ const memesSentences = [
 ]
 
 let gMeme
-let gIsAutoFitSize = true // let's user override auto fit size feature
 
 function getMeme(id) {
 	return gMeme
@@ -25,23 +24,19 @@ function getMeme(id) {
 
 function setCurrMeme(id) {
 	gMeme = {
+		isAutoFitSize: true, //let's user override auto fit size feature
 		selectedImgId: id,
 		selectedLineIdx: 0,
 		lines: [
 			{
 				txt: getRandSentence(memesSentences),
 				size: 200,
-				align: 'left',
+				align: 'center',
 				color: 'black',
 				font: 'Impact'
 			}
 		]
 	}
-}
-
-function setLineTxt(txt) {
-	let line = gMeme.selectedLineIdx
-	gMeme.lines[line].txt = txt
 }
 
 function setImg(id) {
@@ -60,17 +55,35 @@ function getImageById(id) {
 	return gImgs.find(img => img.id === id)
 }
 
+function setLineTxt(txt) {
+	let line = gMeme.selectedLineIdx
+	gMeme.lines[line].txt = txt
+	gMeme.isAutoFitSize = true
+}
+
 // auto fit font size feature
 function fitFontSize(sentence, font, size) {
-	if (!gIsAutoFitSize) return size
-	while (gCtx.measureText(sentence).width > gElCanvas.width) {
-		size--
-		gCtx.font = `${size}px ${font}`
+	if (!gMeme.isAutoFitSize) return size
+	if (gCtx.measureText(sentence).width > gElCanvas.width) {
+		while (gCtx.measureText(sentence).width > gElCanvas.width) {
+			size--
+			gCtx.font = `${size}px ${font}`
+		}
+	} else {
+		while (gCtx.measureText(sentence).width < gElCanvas.width) {
+			size++
+			gCtx.font = `${size}px ${font}`
+		}
 	}
-	gIsAutoFitSize = false
+	gMeme.isAutoFitSize = false
 	return size - 2 // -2 adjusts for stroke
 }
 
 function setFontSize(num) {
+	if (gMeme.lines[gMeme.selectedLineIdx].size > 200) num *= 10 // make it easier to adjust big font size
 	gMeme.lines[gMeme.selectedLineIdx].size += num
+}
+
+function alignTxt(side) {
+	gMeme.lines[gMeme.selectedLineIdx].align = side
 }
