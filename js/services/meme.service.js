@@ -24,7 +24,7 @@ function getMeme(id) {
 
 function setCurrMeme(id) {
 	gMeme = {
-		isAutoFitSize: true, //let's user override auto fit size feature
+		isAutoFitSize: true, //auto fit size feature
 		selectedImgId: id,
 		selectedLineIdx: 0,
 		lines: [
@@ -76,7 +76,6 @@ function fitFontSize(sentence, font, size) {
 			gCtx.font = `${size}px ${font}`
 		}
 	}
-	gMeme.isAutoFitSize = false
 	return size - 2 // -2 adjusts for stroke
 }
 
@@ -104,6 +103,19 @@ function setFont(font) {
 function setColor(val) {
 	const currLine = gMeme.lines[gMeme.selectedLineIdx]
 	currLine.color = val
+}
+
+function createNewLine() {
+	gMeme.lines.push({
+		txt: getRandSentence(memesSentences),
+		size: 200,
+		align: 'center',
+		color: 'white',
+		font: 'Impact',
+		pos: { x: 250, y: 250 }
+	})
+	gMeme.isAutoFitSize = true
+	gMeme.selectedLineIdx++
 }
 
 // function setLinePos() {

@@ -37,7 +37,7 @@ function renderMeme(id) {
 	const img = setImg(id)
 	// console.log(img)
 	renderImg(img)
-	renderLine(meme)
+	renderLines(meme)
 }
 
 function renderImg(img) {
@@ -48,20 +48,22 @@ function renderImg(img) {
 	gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function renderLine(meme) {
-	const line = meme.lines[meme.selectedLineIdx]
-	const sentence = line.txt
-	const { x, y } = line.pos
-	gCtx.font = `${line.size}px ${line.font}`
-	line.size = fitFontSize(sentence, line.font, line.size)
-	gCtx.lineWidth = 4
-	gCtx.strokeStyle = 'black'
-	gCtx.fillStyle = line.color
-	gCtx.lineJoin = 'round' //this prevents wired artifacts from stroke
-	gCtx.textAlign = line.align
-	gCtx.font = `${line.size}px ${line.font}`
-	gCtx.strokeText(sentence, x, y)
-	gCtx.fillText(sentence, x, y)
+function renderLines(meme) {
+	meme.lines.forEach(line => {
+		const sentence = line.txt
+		const { x, y } = line.pos
+		gCtx.font = `${line.size}px ${line.font}`
+		line.size = fitFontSize(sentence, line.font, line.size)
+		gCtx.lineWidth = 4
+		gCtx.strokeStyle = 'black'
+		gCtx.fillStyle = line.color
+		gCtx.lineJoin = 'round' //this prevents wired artifacts from stroke
+		gCtx.textAlign = line.align
+		gCtx.font = `${line.size}px ${line.font}`
+		gCtx.strokeText(sentence, x, y)
+		gCtx.fillText(sentence, x, y)
+	})
+	gMeme.isAutoFitSize = false
 }
 
 function onSetLineTxt() {
@@ -104,7 +106,7 @@ function onMoveLineUp() {
 	//user releases the mouse outside the btn
 	//and interval goes off forever
 	gInterval = setInterval(() => {
-		moveLine(-2)
+		moveLine(-1)
 		const meme = getMeme()
 		renderMeme(meme.selectedImgId)
 	}, 10)
@@ -116,7 +118,7 @@ function onStopLineUp() {
 
 function onMoveLineDown() {
 	gInterval = setInterval(() => {
-		moveLine(2)
+		moveLine(1)
 		const meme = getMeme()
 		renderMeme(meme.selectedImgId)
 	}, 10)
@@ -147,6 +149,12 @@ function onFontSelect(val) {
 
 function onSetColor(val) {
 	setColor(val)
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
+}
+
+function onAddLine() {
+	createNewLine()
 	const meme = getMeme()
 	renderMeme(meme.selectedImgId)
 }
