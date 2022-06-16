@@ -62,6 +62,7 @@ function setLineTxt(txt) {
 	gMeme.isAutoFitSize = true
 }
 
+//TODO bug - this scales all lines not only the selected one
 // auto fit font size feature
 function fitFontSize(sentence, font, size) {
 	if (!gMeme.isAutoFitSize) return size
@@ -76,7 +77,7 @@ function fitFontSize(sentence, font, size) {
 			gCtx.font = `${size}px ${font}`
 		}
 	}
-	return size - 2 // -2 adjusts for stroke
+	return size
 }
 
 function setFontSize(num) {
@@ -116,6 +117,12 @@ function createNewLine() {
 	})
 	gMeme.isAutoFitSize = true
 	gMeme.selectedLineIdx++
+	console.log('selectedLineIdx', gMeme.selectedLineIdx)
+}
+
+function deleteLine() {
+	const idx = gMeme.selectedLineIdx
+	gMeme.lines.splice(idx, 1)
 }
 
 // function setLinePos() {

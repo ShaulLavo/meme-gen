@@ -47,7 +47,7 @@ function renderImg(img) {
 	gElCanvas.height = img.height
 	gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
-
+//todo: implement size-2 to adjust for stroke size
 function renderLines(meme) {
 	meme.lines.forEach(line => {
 		const sentence = line.txt
@@ -158,3 +158,12 @@ function onAddLine() {
 	const meme = getMeme()
 	renderMeme(meme.selectedImgId)
 }
+
+function onDeleteLine() {
+	deleteLine()
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
+	meme.selectedLineIdx--
+}
+
+// function showSelectedLine()
