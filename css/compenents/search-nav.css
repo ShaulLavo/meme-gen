@@ -1,0 +1,66 @@
+.search-nav {
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.search-bar {
+	background: var(--clr5);
+	background: var(--grad1);
+	border-radius: 1rem;
+	align-items: center;
+	padding: 0 20px;
+	height: 80px;
+}
+.search-bar > * {
+	background: none;
+	color: white;
+	font-size: 1.5rem;
+	line-height: 2;
+	border: none;
+	font-family: inter-reg;
+}
+
+.search-input {
+	padding: 10px 40px;
+}
+
+.search-input:focus-visible {
+	outline: none;
+}
+
+.search-btn {
+	background: var(--clr5);
+	color: var(--clr4);
+	border-radius: 1rem;
+	padding: 0 10px;
+}
+.search-btn:hover {
+	color: var(--clr3);
+}
+
+.search-icon {
+	height: 80px;
+	width: 80px;
+	background-image: url(/assets/svg/search.svg);
+	background-size: 80px 80px;
+	position: relative;
+	bottom: 8px;
+}
+
+/* this changes the color of the default 'x' that appears in the search bar */
+[type='search']::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+	height: 70px;
+	width: 70px;
+	background-image: url(/assets/svg/X.svg);
+	background-size: 70px 70px;
+}
+
+.key-words {
+	width: 100%;
+	justify-content: space-around;
+	align-items: center;
+}
+.key-words span:hover {
+	color: var(--clr3);
+}

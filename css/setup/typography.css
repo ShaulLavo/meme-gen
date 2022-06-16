@@ -9,6 +9,16 @@
 	src: url('../../fonts/Koulen.ttf');
 }
 
+/* Inter */
+@font-face {
+	font-family: inter-reg;
+	src: url('../../fonts/inter/Inter-Regular.ttf');
+}
+@font-face {
+	font-family: inter-bold;
+	src: url('../../fonts/inter/Inter-Bold.ttf');
+}
+
 /* Font Awesome */
 
 @font-face {

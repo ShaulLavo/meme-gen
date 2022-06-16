@@ -4,15 +4,17 @@
 	grid-template-columns: 1fr 1fr;
 	place-items: center;
 	justify-content: space-around;
-	pointer-events: none;
-	opacity: 0;
+	/* pointer-events: none; */
+	/* opacity: 0; */
+	display: none;
 	padding: 5px;
 	min-height: 800px;
+	border-radius: 1rem;
+	margin-bottom: 40px;
 }
 .edit-modal * {
-	font-family: koulen, sans-serif;
+	font-family: inter-bold, sans-serif;
 	font-size: 1.2rem;
-	/* if I don't do these font gets overridden by default  */
 }
 .edit-modal *:focus {
 	color: var(--clr3);
@@ -60,7 +62,9 @@
 .option-container .txt-input input {
 	font-size: 1.5rem;
 	margin-top: 25px;
+	padding: 5px;
 	border: none;
+	font-family: inter-reg, sans-serif;
 }
 /* .option-up {
 }

@@ -10,9 +10,11 @@
 
 /* COMPONENTS */
 @import 'compenents/header.css';
+@import 'compenents/search-nav.css';
 @import 'compenents/box.css';
 @import 'compenents/gallery.css';
 @import 'compenents/edit-modal.css';
+@import 'compenents/footer.css';
 
 /* MEDIA QUERIES */
 /* @import 'mq/mq.css'; */
