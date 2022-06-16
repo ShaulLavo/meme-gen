@@ -49,16 +49,16 @@
                     <input placeholder="Enter your text.." type="text">
                     <button onclick="onSetLineTxt()">submit</button>
                 </span>
-                <button class="option-up">up</button>
-                <button class="option-down">down</button>
-                <button class="option-plus">plus</button>
-                <button class="option-delete">delete</button>
+                <button onclick="on" class="option-up">up</button>
+                <button onclick="on" class="option-down">down</button>
+                <button onclick="on" class="option-plus">plus</button>
+                <button onclick="on" class="option-delete">delete</button>
                 <div class="option-btn-container grid">
-                    <button>A+</button>
-                    <button>A-</button>
-                    <button>align-left</button>
-                    <button>align-center</button>
-                    <button>align-right</button>
+                    <button onclick="onFontInc()">A+</button>
+                    <button onclick="onFontDec()">A-</button>
+                    <button onclick="onAlignLeft()">align-left</button>
+                    <button onclick="onAlignRight()">align-center</button>
+                    <button onclick="onAlignCenter()">align-right</button>
                     <span class="impact"><select type="select">
                             <option value="1">Impact</option>
                             <option value="2">font</option>
@@ -66,7 +66,7 @@
                             <option value="4">font</option>
                         </select>
                     </span>
-                    <button>size</button>
+                    <button>s</button>
                     <button>color</button>
                 </div>
                 <div class="sticker-container flex">

@@ -17,21 +17,23 @@ const memesSentences = [
 ]
 
 let gMeme
+let gIsAutoFitSize = true // let's user override auto fit size feature
 
 function getMeme(id) {
 	return gMeme
 }
 
-function setNewMeme(id) {
+function setCurrMeme(id) {
 	gMeme = {
 		selectedImgId: id,
 		selectedLineIdx: 0,
 		lines: [
 			{
 				txt: getRandSentence(memesSentences),
-				size: 20,
+				size: 200,
 				align: 'left',
-				color: 'black'
+				color: 'black',
+				font: 'Impact'
 			}
 		]
 	}
@@ -58,12 +60,17 @@ function getImageById(id) {
 	return gImgs.find(img => img.id === id)
 }
 
-function fitFontSize(sentence) {
-	let fontSize = 200
-	console.log(gElCanvas.width)
+// auto fit font size feature
+function fitFontSize(sentence, font, size) {
+	if (!gIsAutoFitSize) return size
 	while (gCtx.measureText(sentence).width > gElCanvas.width) {
-		fontSize--
-		gCtx.font = `${fontSize}px Arial`
+		size--
+		gCtx.font = `${size}px ${font}`
 	}
-	return fontSize
+	gIsAutoFitSize = false
+	return size - 2 // -2 adjusts for stroke
+}
+
+function setFontSize(num) {
+	gMeme.lines[gMeme.selectedLineIdx].size += num
 }

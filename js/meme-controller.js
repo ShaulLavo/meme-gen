@@ -2,6 +2,8 @@
 
 let gElCanvas
 let gCtx
+let gFont = 'Impact'
+let gFontSize = 200
 //TODO remove globals from controller
 
 function initCanvas() {
@@ -10,9 +12,10 @@ function initCanvas() {
 }
 
 function onImgSelect(id) {
+	// gCurrImgId = id
 	initCanvas()
 	let meme = getMeme()
-	if (!meme || !(meme.selectedImgId === id)) meme = setNewMeme(id)
+	if (!meme || !(meme.selectedImgId === id)) setCurrMeme(id)
 	renderMeme(id)
 	openEditModal()
 }
@@ -48,14 +51,17 @@ function renderImg(img) {
 }
 
 function renderImgTxt(meme) {
-	const line = meme.selectedLineIdx
-	const sentence = meme.lines[line].txt
-	gCtx.font = '200px Arial'
-	const fontSize = fitFontSize(sentence)
-	gCtx.lineWidth = 2
-	gCtx.fillStyle = 'black'
-	gCtx.font = `${fontSize}px Arial`
-	gCtx.fillText(sentence, 0, 50)
+	const line = meme.lines[meme.selectedLineIdx]
+	const sentence = line.txt
+	gCtx.font = `${line.size}px ${line.font}`
+	line.size = fitFontSize(sentence, line.font, line.size)
+	gCtx.lineWidth = 4
+	gCtx.strokeStyle = 'white'
+	gCtx.fillStyle = line.color
+	gCtx.lineJoin = 'round' //this prevents wired artifacts from stroke
+	gCtx.font = `${line.size}px ${line.font}`
+	gCtx.strokeText(sentence, 2, gElCanvas.height / 2)
+	gCtx.fillText(sentence, 2, gElCanvas.height / 2)
 }
 
 function onSetLineTxt() {
@@ -63,4 +69,24 @@ function onSetLineTxt() {
 	setLineTxt(txt)
 	const meme = getMeme()
 	renderMeme(meme.selectedImgId)
+}
+
+function onFontInc() {
+	setFontSize(2)
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
+}
+function onFontDec() {
+	setFontSize(-2)
+	const meme = getMeme()
+	renderMeme(meme.selectedImgId)
+}
+function onAlignLeft() {
+	alignTxt('left')
+}
+function onAlignRight() {
+	alignTxt('right')
+}
+function onAlignCenter() {
+	alignTxt('center')
 }
