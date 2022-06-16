@@ -1,5 +1,5 @@
 function getRandSentence(arr) {
-	const randNum = getRandomIntInclusive(0, arr.length)
+	const randNum = getRandomIntInclusive(0, arr.length - 1)
 	return arr[randNum]
 }
 

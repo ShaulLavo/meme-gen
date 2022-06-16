@@ -37,9 +37,33 @@ function setNewMeme(id) {
 	}
 }
 
-getRandSentence(memesSentences)
-
 function setLineTxt(txt) {
 	let line = gMeme.selectedLineIdx
 	gMeme.lines[line].txt = txt
+}
+
+function setImg(id) {
+	const img = getImageById(id)
+	const elImg = getImgEl(img)
+	return elImg
+}
+
+function getImgEl(img) {
+	const elImg = new Image()
+	elImg.src = img.url
+	return elImg
+}
+
+function getImageById(id) {
+	return gImgs.find(img => img.id === id)
+}
+
+function fitFontSize(sentence) {
+	let fontSize = 200
+	console.log(gElCanvas.width)
+	while (gCtx.measureText(sentence).width > gElCanvas.width) {
+		fontSize--
+		gCtx.font = `${fontSize}px Arial`
+	}
+	return fontSize
 }

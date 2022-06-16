@@ -1,3 +1,4 @@
 .main-layout {
-	width: 1020px;
+	/* min-width: 1020px; */
+	max-width: 1020px;
 }

@@ -60,6 +60,7 @@
 	width: 100%;
 	justify-content: space-around;
 	align-items: center;
+	font-family: inter-reg, sans-serif;
 }
 .key-words span:hover {
 	color: var(--clr3);

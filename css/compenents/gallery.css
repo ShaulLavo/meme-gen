@@ -8,8 +8,6 @@
 	margin-bottom: 60px;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
-	justify-content: center;
-	align-items: center;
 	gap: 20px;
 	border-radius: 1rem;
 }
