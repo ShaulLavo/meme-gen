@@ -7,6 +7,7 @@ add min font size
 make a hard coded array of imgs
 add reset inputs functions
 clean code with dome distraction
+! when dragging from edge of txt it jumps -- calculate center of shape as starting point
 */
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 let gElCanvas
@@ -46,6 +47,7 @@ function onDown(ev) {
 
 function onMove(ev) {
 	const line = getMeme().lines[gMeme.selectedLineIdx]
+	if (!line) return
 	if (line.isDrag) {
 		const pos = getEvPos(ev)
 		const startPos = line.pos
@@ -102,7 +104,9 @@ function setSelectedLine(idx) {
 function onImgSelect(id) {
 	initCanvas()
 	let meme = getMeme()
-	if (!meme || !(meme.selectedImgId === id)) setCurrMeme(id)
+	if (!meme || !(meme.selectedImgId === id)) {
+		setCurrMeme(id)
+	}
 	renderMeme(id)
 	openEditModal()
 }
@@ -139,6 +143,7 @@ function renderImg(img) {
 }
 //todo: implement size-2 to adjust for stroke size
 function renderLines(meme) {
+	if (!meme.lines || !meme.lines.length) return
 	meme.lines.forEach(line => {
 		const sentence = line.txt
 		const { x, y } = line.pos
@@ -147,7 +152,7 @@ function renderLines(meme) {
 		gCtx.lineWidth = 4
 		gCtx.strokeStyle = 'black'
 		gCtx.fillStyle = line.color
-		gCtx.lineJoin = 'round' //this prevents wired artifacts from stroke
+		gCtx.lineJoin = 'round'
 		gCtx.textAlign = line.align
 		gCtx.font = `${line.size}px ${line.font}`
 		setLineMetrics(gCtx.measureText(sentence), line)
@@ -161,35 +166,26 @@ function renderLines(meme) {
 function onSetLineTxt() {
 	const txt = document.querySelector('.txt-input input').value
 	setLineTxt(txt)
-	const meme = getMeme()
+}
+
+function onShowLineTxt() {
+	const txt = document.querySelector('.txt-input input').value
 	renderMeme()
 }
 
 function onFontInc() {
 	setFontSize(2)
-	const meme = getMeme()
 	renderMeme()
 }
 function onFontDec() {
 	setFontSize(-2)
-	const meme = getMeme()
 	renderMeme()
 }
 
 // align left actually aligns right cus make more sense
-function onAlignLeft() {
-	alignTxt('right')
-	const meme = getMeme()
-	renderMeme()
-}
-function onAlignRight() {
-	alignTxt('left')
-	const meme = getMeme()
-	renderMeme()
-}
-function onAlignCenter() {
-	alignTxt('center')
-	const meme = getMeme()
+//todo make align to edge + refactor to switch case
+function onAlign(side) {
+	alignTxt(side)
 	renderMeme()
 }
 
@@ -200,7 +196,6 @@ function onMoveLineUp() {
 	//not sure if workaround is possible
 	gInterval = setInterval(() => {
 		moveLine(-1)
-		const meme = getMeme()
 		renderMeme()
 	}, 10)
 }
@@ -212,7 +207,6 @@ function onStopLineUp() {
 function onMoveLineDown() {
 	gInterval = setInterval(() => {
 		moveLine(1)
-		const meme = getMeme()
 		renderMeme()
 	}, 10)
 }
@@ -227,7 +221,6 @@ function onStopLineDown() {
 // 	if (isPressed) {
 // 		const interval = setInterval(() => {
 // 			moveLine(-2)
-// 			const meme = getMeme()
 // 			renderMeme()
 // 		}, 100)
 // 	}
@@ -236,37 +229,34 @@ function onStopLineDown() {
 
 function onFontSelect(val) {
 	setFont(val)
-	const meme = getMeme()
 	renderMeme()
 }
 
 function onSetColor(val) {
 	setColor(val)
-	const meme = getMeme()
 	renderMeme()
 }
 
 function onAddLine() {
 	createNewLine()
-	const meme = getMeme()
 	renderMeme()
 }
 
 function onDeleteLine() {
 	deleteLine()
-	const meme = getMeme()
 	renderMeme()
+	const meme = getMeme()
 	meme.selectedLineIdx--
 }
 
 function getLineMetrics(line) {
-	// const meme = getMeme()
 	const metrics = line.metrics
-	const width = metrics.width + 8 // adjustments to make rect a bit bigger
-	const height = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent + 8
-	const x = line.pos.x - metrics.actualBoundingBoxLeft - 4
-	const y = line.pos.y - metrics.actualBoundingBoxAscent - 4
-	return { x, y, width, height }
+	const width = metrics.width
+	const height = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+	const x = line.pos.x - metrics.actualBoundingBoxLeft
+	const y = line.pos.y - metrics.actualBoundingBoxAscent
+	const right = line.pos.x - metrics.actualBoundingBoxRight
+	return { x, y, width, height, right }
 }
 
 function drawLineSelection() {
@@ -274,5 +264,5 @@ function drawLineSelection() {
 	const { x, y, width, height } = getLineMetrics(gMeme.lines[gMeme.selectedLineIdx])
 	gCtx.setLineDash([5])
 	gCtx.lineWidth = 1
-	gCtx.strokeRect(x, y, width, height)
+	gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8) // adjustments to make rect a bit bigger
 }

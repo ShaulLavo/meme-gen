@@ -46,8 +46,9 @@
             <canvas class="img-editor"></canvas>
             <div class="option-container grid">
                 <span class="txt-input">
-                    <input placeholder="Enter your text.." type="text">
-                    <button onclick="onSetLineTxt()">submit</button>
+                    <input onchange="onSetLineTxt()" oninput="onShowLineTxt()" placeholder="Enter your text.."
+                        type="text">
+                    <!-- <button onclick="onSetLineTxt()">submit</button> -->
                 </span>
                 <button onmousedown="onMoveLineUp()" onmouseup="onStopLineUp()" class="option-up">up</button>
                 <button onmousedown="onMoveLineDown()" onmouseup="onStopLineDown()" class="option-down">down</button>
@@ -56,9 +57,9 @@
                 <div class="option-btn-container grid">
                     <button onclick="onFontInc()">A+</button>
                     <button onclick="onFontDec()">A-</button>
-                    <button onclick="onAlignLeft()">align-left</button>
-                    <button onclick="onAlignCenter()">align-center</button>
-                    <button onclick="onAlignRight()">align-right</button>
+                    <button onclick="onAlign('left')">align-left</button>
+                    <button onclick="onAlign('center')">align-center</button>
+                    <button onclick="onAlign('right')">align-right</button>
                     <span class="font-select">
                         <select onchange="onFontSelect(this.value)" type="select">
                             <option value="impact">Impact</option>

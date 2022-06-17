@@ -67,6 +67,7 @@ function setLineTxt(txt) {
 function fitFontSize(sentence, font, size) {
 	if (!gMeme.isAutoFitSize) return size
 	if (gCtx.measureText(sentence).width > gElCanvas.width) {
+		console.log('hi')
 		while (gCtx.measureText(sentence).width > gElCanvas.width) {
 			size--
 			gCtx.font = `${size}px ${font}`
@@ -85,9 +86,29 @@ function setFontSize(num) {
 	gMeme.lines[gMeme.selectedLineIdx].size += num
 }
 
+// function alignTxt(side) {
+// 	gMeme.lines[gMeme.selectedLineIdx].align = side
+// }
+
 function alignTxt(side) {
-	//TODO this aligns relative to center maybe just put text on edge of canvas
-	gMeme.lines[gMeme.selectedLineIdx].align = side
+	const line = gMeme.lines[gMeme.selectedLineIdx]
+	const pos = line.pos
+	const { width } = getLineMetrics(gMeme.lines[gMeme.selectedLineIdx])
+	switch (side) {
+		case 'right':
+			pos.x = gElCanvas.width - width / 2
+			console.log(pos.x)
+			break
+		case 'left':
+			pos.x = width / 2
+			console.log(pos.x)
+			break
+		case 'center':
+			pos.x = gElCanvas.width / 2
+			console.log(pos.x)
+		default:
+			break
+	}
 }
 
 function moveLine(dy, dx = 0) {
@@ -101,7 +122,7 @@ function setFont(font) {
 	currLine.font = font
 	gMeme.isAutoFitSize = true //fit to new font size
 }
-
+1
 function setColor(val) {
 	const currLine = gMeme.lines[gMeme.selectedLineIdx]
 	currLine.color = val
@@ -131,7 +152,9 @@ function setLineMetrics(metrics, line) {
 }
 
 function setLineDrag(bol) {
-	gMeme.lines[gMeme.selectedLineIdx].isDrag = bol
+	const line = gMeme.lines[gMeme.selectedLineIdx]
+	if (!line) return
+	line.isDrag = bol
 }
 
 // function setClickedLine(clickedPos) {
