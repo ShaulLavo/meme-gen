@@ -111,3 +111,20 @@
 .download {
 	grid-column: 4;
 }
+
+.share-container {
+	height: 50px;
+	flex-direction: column;
+	margin: auto;
+	align-items: center;
+	/* background-color: ; */
+}
+
+.share-container .share-link {
+	color: var(--clr3);
+}
+
+.color-selction {
+	flex-direction: column;
+	justify-content: space-around;
+}

@@ -33,6 +33,7 @@ function setCurrMeme(id) {
 				size: 200,
 				align: 'center',
 				color: 'white',
+				strokeColor: 'black',
 				font: 'Impact',
 				pos: { x: 250, y: 250 }
 			}
@@ -127,6 +128,11 @@ function setFont(font) {
 function setColor(val) {
 	const currLine = gMeme.lines[gMeme.selectedLineIdx]
 	currLine.color = val
+}
+
+function setStrokeColor(val) {
+	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+	currLine.strokeColor = val
 }
 
 function createNewLine(txt = getRandSentence(memesSentences)) {

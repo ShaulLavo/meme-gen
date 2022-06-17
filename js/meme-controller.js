@@ -6,8 +6,8 @@ remove globals from controller
 add min font size
 make a hard coded array of imgs
 add reset inputs functions
-clean code with dome distraction
-! when dragging from edge of txt it jumps -- calculate center of shape as starting point
+clean code with dome destruction
+
 */
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 let gElCanvas
@@ -151,7 +151,7 @@ function renderLines(meme) {
 		gCtx.font = `${line.size}px ${line.font}`
 		line.size = fitFontSize(sentence, line.font, line.size)
 		gCtx.lineWidth = 4
-		gCtx.strokeStyle = 'black'
+		gCtx.strokeStyle = line.strokeColor
 		gCtx.fillStyle = line.color
 		gCtx.lineJoin = 'round'
 		gCtx.textAlign = line.align
@@ -235,6 +235,11 @@ function onSetColor(val) {
 	renderMeme()
 }
 
+function onSetStrokeColor(val) {
+	setStrokeColor(val)
+	renderMeme()
+}
+
 function onAddLine() {
 	createNewLine()
 	renderMeme()
@@ -262,8 +267,9 @@ function drawLineSelection() {
 	const line = gMeme.lines[gMeme.selectedLineIdx]
 	const { x, y, width, height } = getLineMetrics(line)
 	gCtx.setLineDash([5])
+	gCtx.strokeStyle = 'black'
 	gCtx.lineWidth = 1
-	if (!(line.txt === '')) gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8)
+	if (!(line.txt === '')) gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8) //&& !isDownload
 	// handel now chars
 	// adjustments to make rect a bit bigger
 }
@@ -271,4 +277,9 @@ function drawLineSelection() {
 function onStickerSelect(sticker) {
 	createNewLine(sticker)
 	renderMeme()
+}
+
+function onDownloadMeme(elLink) {
+	var imgContent = gElCanvas.toDataURL('image/jpeg')
+	elLink.href = imgContent
 }

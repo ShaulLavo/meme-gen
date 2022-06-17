@@ -1,5 +1,5 @@
 html {
-	font-family: koulen, sans-serif;
+	font-family: inter-reg, sans-serif;
 }
 
 * {
@@ -19,3 +19,13 @@ body {
 	font-size: 1.2rem;
 	line-height: 1.2;
 } */
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: var(--clr3);
+}
+a:focus {
+	color: #61222d;
+}

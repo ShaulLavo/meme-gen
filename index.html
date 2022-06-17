@@ -37,6 +37,10 @@
     </nav>
 
     <main>
+        <div class="share-container flex main-layout">
+            <div class="user-msg"></div>
+            <div class="share-link"></div>
+        </div>
         <div class="img-gallery-container">
             <div class="img-gallery main-layout grid" id="gallery"></div>
         </div>
@@ -72,10 +76,10 @@
                         </select>
                     </span>
                     <button>save</button>
-                    <span>
-                        <label for="favcolor">Select color:</label>
-                        <input oninput="onSetColor(this.value)" type="color" id="favcolor" name="favcolor"
-                            value="#ffffff">
+                    <span class="color-selction flex">
+                        <label>Select color:</label>
+                        <input oninput="onSetColor(this.value)" type="color" name="favcolor" value="#ffffff">
+                        <input oninput="onSetStrokeColor(this.value)" type="color" name="favcolor" value="#000000">
                     </span>
                 </div>
                 <div class="sticker-container flex">
@@ -85,8 +89,9 @@
                     <span onclick='onStickerSelect(this.innerText)'>😆</span>
                     <span onclick='onStickerSelect(this.innerText)'>🤢</span>
                 </div>
-                <button class="share">share</button>
-                <button class="download">download</button>
+                <button onclick="onUploadImg()" class="share">share</button>
+
+                <a href="#" class="download" onclick="onDownloadMeme(this)" download="my-meme.jpg">Download</a>
             </div>
         </div>
 
@@ -104,6 +109,7 @@
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
+    <script src="js/services/upload.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/main.js"></script>
     <script src="js/gallery-controller.js"></script>
