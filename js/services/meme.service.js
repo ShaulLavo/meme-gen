@@ -90,9 +90,10 @@ function alignTxt(side) {
 	gMeme.lines[gMeme.selectedLineIdx].align = side
 }
 
-function moveLine(num) {
+function moveLine(dy, dx = 0) {
 	const currLine = gMeme.lines[gMeme.selectedLineIdx]
-	currLine.pos.y += num
+	currLine.pos.y += dy
+	currLine.pos.x += dx
 }
 
 function setFont(font) {
@@ -113,11 +114,11 @@ function createNewLine() {
 		align: 'center',
 		color: 'white',
 		font: 'Impact',
-		pos: { x: 250, y: 250 }
+		pos: { x: 250, y: 250 },
+		isDrag: false
 	})
 	gMeme.isAutoFitSize = true
-	gMeme.selectedLineIdx++
-	console.log('selectedLineIdx', gMeme.selectedLineIdx)
+	gMeme.selectedLineIdx = gMeme.lines.length - 1 //set last added line to current
 }
 
 function deleteLine() {
@@ -125,9 +126,15 @@ function deleteLine() {
 	gMeme.lines.splice(idx, 1)
 }
 
-// function setLinePos() {
-// 	const canvas = gElCanvas
-// 	const currLine = gMeme.lines[gMeme.selectedLineIdx]
-// 	currLine.pos.x = canvas.width / 2
-// 	currLine.pos.y = canvas.height / 2
+function setLineMetrics(metrics, line) {
+	line.metrics = metrics
+}
+
+function setLineDrag(bol) {
+	gMeme.lines[gMeme.selectedLineIdx].isDrag = bol
+}
+
+// function setClickedLine(clickedPos) {
+// 	const { pos } = gMeme.lines[gMeme.selectedLineIdx]
+
 // }
