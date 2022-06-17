@@ -9,7 +9,7 @@
     <title>Meme Generator</title>
 </head>
 
-<body onload="init()">
+<body onmouseup="onStopLineUp()" onmouseup="onStopLineDown()" onload="init()">
     <header class="flex main-layout">
         <h1 class="logo">
             <span class="logo-meme"> Meme</span> Generator
@@ -46,12 +46,13 @@
             <canvas class="img-editor"></canvas>
             <div class="option-container grid">
                 <span class="txt-input">
+                    <h2>Type to change line text:</h2>
                     <input onchange="onSetLineTxt()" oninput="onShowLineTxt()" placeholder="Enter your text.."
                         type="text">
                     <!-- <button onclick="onSetLineTxt()">submit</button> -->
                 </span>
-                <button onmousedown="onMoveLineUp()" onmouseup="onStopLineUp()" class="option-up">up</button>
-                <button onmousedown="onMoveLineDown()" onmouseup="onStopLineDown()" class="option-down">down</button>
+                <button onmousedown="onMoveLineUp()" class="option-up">up</button>
+                <button onmousedown="onMoveLineDown()" class="option-down">down</button>
                 <button onclick="onAddLine()" class="option-add">Add New Line</button>
                 <button onclick="onDeleteLine()" class="option-delete">Delete</button>
                 <div class="option-btn-container grid">
@@ -73,7 +74,7 @@
                     <button>save</button>
                     <span>
                         <label for="favcolor">Select color:</label>
-                        <input onchange="onSetColor(this.value)" type="color" id="favcolor" name="favcolor"
+                        <input oninput="onSetColor(this.value)" type="color" id="favcolor" name="favcolor"
                             value="#ffffff">
                     </span>
                 </div>

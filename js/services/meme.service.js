@@ -57,8 +57,12 @@ function getImageById(id) {
 }
 
 function setLineTxt(txt) {
-	let line = gMeme.selectedLineIdx
-	gMeme.lines[line].txt = txt
+	let line = gMeme.lines[gMeme.selectedLineIdx]
+	if (!line) {
+		createNewLine()
+		line = gMeme.lines[gMeme.selectedLineIdx]
+	}
+	line.txt = txt
 	gMeme.isAutoFitSize = true
 }
 
@@ -67,7 +71,6 @@ function setLineTxt(txt) {
 function fitFontSize(sentence, font, size) {
 	if (!gMeme.isAutoFitSize) return size
 	if (gCtx.measureText(sentence).width > gElCanvas.width) {
-		console.log('hi')
 		while (gCtx.measureText(sentence).width > gElCanvas.width) {
 			size--
 			gCtx.font = `${size}px ${font}`
@@ -78,6 +81,7 @@ function fitFontSize(sentence, font, size) {
 			gCtx.font = `${size}px ${font}`
 		}
 	}
+	if (size > 200) size = 200
 	return size
 }
 
@@ -97,15 +101,12 @@ function alignTxt(side) {
 	switch (side) {
 		case 'right':
 			pos.x = gElCanvas.width - width / 2
-			console.log(pos.x)
 			break
 		case 'left':
 			pos.x = width / 2
-			console.log(pos.x)
 			break
 		case 'center':
 			pos.x = gElCanvas.width / 2
-			console.log(pos.x)
 		default:
 			break
 	}

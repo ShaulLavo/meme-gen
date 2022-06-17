@@ -141,11 +141,12 @@ function renderImg(img) {
 	gElCanvas.height = img.height
 	gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
-//todo: implement size-2 to adjust for stroke size
+
 function renderLines(meme) {
 	if (!meme.lines || !meme.lines.length) return
 	meme.lines.forEach(line => {
-		const sentence = line.txt
+		const sentence = line.txt.trim()
+		if (sentence === '') return
 		const { x, y } = line.pos
 		gCtx.font = `${line.size}px ${line.font}`
 		line.size = fitFontSize(sentence, line.font, line.size)
@@ -170,6 +171,7 @@ function onSetLineTxt() {
 
 function onShowLineTxt() {
 	const txt = document.querySelector('.txt-input input').value
+	setLineTxt(txt)
 	renderMeme()
 }
 
@@ -190,10 +192,6 @@ function onAlign(side) {
 }
 
 function onMoveLineUp() {
-	//!bug
-	//when user releases the mouse outside the btn
-	//the interval goes off forever
-	//not sure if workaround is possible
 	gInterval = setInterval(() => {
 		moveLine(-1)
 		renderMeme()
@@ -245,6 +243,7 @@ function onAddLine() {
 function onDeleteLine() {
 	deleteLine()
 	renderMeme()
+
 	const meme = getMeme()
 	meme.selectedLineIdx--
 }
@@ -255,14 +254,16 @@ function getLineMetrics(line) {
 	const height = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
 	const x = line.pos.x - metrics.actualBoundingBoxLeft
 	const y = line.pos.y - metrics.actualBoundingBoxAscent
-	const right = line.pos.x - metrics.actualBoundingBoxRight
-	return { x, y, width, height, right }
+	return { x, y, width, height }
 }
 
 function drawLineSelection() {
 	//TODO add circles in corners or maybe even photoshop like animation
-	const { x, y, width, height } = getLineMetrics(gMeme.lines[gMeme.selectedLineIdx])
+	const line = gMeme.lines[gMeme.selectedLineIdx]
+	const { x, y, width, height } = getLineMetrics(line)
 	gCtx.setLineDash([5])
 	gCtx.lineWidth = 1
-	gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8) // adjustments to make rect a bit bigger
+	if (!(line.txt === '')) gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8)
+	// handel now chars
+	// adjustments to make rect a bit bigger
 }

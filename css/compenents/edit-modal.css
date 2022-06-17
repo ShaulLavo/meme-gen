@@ -53,14 +53,17 @@
 }
 .txt-input {
 	grid-column: 1 / 5;
-	text-align: center;
+	/* text-align: center; */
+	place-items: center;
 }
-.txt-input > * {
-	border-radius: 0.8rem;
-}
-.option-container .txt-input input {
+
+.txt-input h2 {
 	font-size: 1.5rem;
-	margin-top: 25px;
+	margin-top: 1.5rem;
+}
+
+.txt-input input {
+	border-radius: 0.8rem;
 	padding: 5px;
 	border: none;
 	font-family: inter-reg, sans-serif;
