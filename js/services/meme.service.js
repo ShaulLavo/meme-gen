@@ -129,9 +129,9 @@ function setColor(val) {
 	currLine.color = val
 }
 
-function createNewLine() {
+function createNewLine(txt = getRandSentence(memesSentences)) {
 	gMeme.lines.push({
-		txt: getRandSentence(memesSentences),
+		txt,
 		size: 200,
 		align: 'center',
 		color: 'white',

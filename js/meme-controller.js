@@ -267,3 +267,8 @@ function drawLineSelection() {
 	// handel now chars
 	// adjustments to make rect a bit bigger
 }
+
+function onStickerSelect(sticker) {
+	createNewLine(sticker)
+	renderMeme()
+}
