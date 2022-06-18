@@ -72,9 +72,9 @@ function onOpenKeywords() {
 }
 
 function closeKeywords() {
-	const elKeywords = document.querySelector('.keywords')
+	const elKeywordContainer = document.querySelector('.search-nav')
 	const elExpandBtn = document.querySelector('.expand')
-	elKeywords.classList.remove('open')
+	elKeywordContainer.style.flexDirection = 'row'
 	elExpandBtn.style.display = 'block'
 }
 
