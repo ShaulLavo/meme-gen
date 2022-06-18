@@ -35,9 +35,7 @@
 .edit-modal .option-container {
 	margin-right: 30px;
 	margin-top: 20px;
-	/* padding: 10px; */
 	border-radius: 1rem;
-	/* min-height: 700px; */
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(6, 1fr);
 	box-shadow: 0px 0px 0 3px var(--clr3);
@@ -47,23 +45,15 @@
 	width: 60%;
 }
 .edit-modal .option-container > * {
-	/* justify-self: space-around; */
-	/* align-self: center; */
-	/* font-size: 1.5rem; */
-	/* height: 60%;
-	width: 60%; */
 	margin: auto;
 	border-radius: 0.8rem;
 }
 .txt-input {
 	grid-column: 1 / 5;
-	/* text-align: center; */
-	/* place-self: center; */
 }
 
 .txt-input h2 {
 	font-size: 1.5rem;
-	/* margin-top: 1.5rem; */
 }
 
 .txt-input input {
@@ -133,19 +123,8 @@
 	color: var(--clr3);
 }
 
-.color-selction {
+.color-selection {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-}
-
-.option-up {
-	/* width: 70px; */
-}
-.option-down {
-	/* width: 70px; */
-}
-
-.option-delete {
-	/* width: 70px; */
 }
