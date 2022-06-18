@@ -1,24 +1,24 @@
 .edit-modal {
 	margin: auto;
-	background-color: var(--clr3);
 	grid-template-columns: 1fr 1fr;
 	place-items: center;
 	justify-content: space-around;
-	/* pointer-events: none; */
-	/* opacity: 0; */
-	display: none;
 	padding: 5px;
 	min-height: 960px;
 	border-radius: 1rem;
 	margin-bottom: 60px;
+	display: none;
 }
 .edit-modal * {
 	font-family: inter-bold, sans-serif;
 	font-size: 1.2rem;
 }
-.edit-modal *:focus {
+.edit-modal button:active {
 	color: var(--clr3);
 	background-color: #281a1e;
+}
+.edit-modal button:hover {
+	color: var(--clr3);
 }
 .edit-modal .close-modal {
 	align-self: start;
@@ -27,36 +27,30 @@
 }
 
 .edit-modal canvas {
-	box-shadow: 0px 0px 2px 3px #ae3d51;
+	box-shadow: 0px 0px 2px 3px var(--clr3);
 	margin-right: 30px;
 }
 
 .edit-modal .option-container {
-	background-color: #ae3d51;
 	margin-right: 30px;
-	padding: 5px;
+	padding: 10px;
 	border-radius: 1rem;
 	min-height: 850px;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(6, 1fr);
-	/* justify-content: space-around;
-	align-items: center; 
-	? this doesn't work but style below does*/
+	box-shadow: 0px 0px 0 3px var(--clr3);
 }
 
 .edit-modal .option-container > * {
 	justify-self: center;
-	align-self: center;
 	font-size: 1.5rem;
 	width: 90%;
 	height: 90%;
 	border-radius: 0.8rem;
-	/* border: none; */
 }
 .txt-input {
 	grid-column: 1 / 5;
-	/* text-align: center; */
-	place-items: center;
+	text-align: center;
 }
 
 .txt-input h2 {
@@ -80,16 +74,17 @@
 .option-delete {
 } */
 
-.option-btn-container {
+.edit-modal .option-btn-container {
 	grid-row: 3/5;
 	grid-column: 1 / 5;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	background-color: #61222d;
-	place-items: center;
+	background-color: var(--clr7);
+	padding: 10px;
+	width: 100%;
 }
 .option-btn-container > * {
-	width: 90%;
-	height: 90%;
+	width: 95%;
+	height: 95%;
 	border-radius: 0.8rem;
 }
 .option-btn-container .font-select {
@@ -106,7 +101,7 @@
 	align-items: center;
 	grid-row: 5;
 	grid-column: 1 / 5;
-	background-color: #61222d;
+	background-color: #775861;
 }
 /* .share {
 } */
@@ -119,7 +114,6 @@
 	flex-direction: column;
 	margin: auto;
 	align-items: center;
-	/* background-color: ; */
 }
 
 .share-container .share-link {

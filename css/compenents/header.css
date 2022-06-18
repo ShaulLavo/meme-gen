@@ -18,22 +18,29 @@ header {
 .top-nav {
 	min-height: 80px;
 	width: 50%;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	font-size: 1.8rem;
 	font-family: Koulen, sans-serif;
 }
 
-.top-nav a {
+.top-nav a,
+.top-nav label {
 	color: var(--clr4);
 	text-decoration: none;
 }
 
-.top-nav a:hover {
+.top-nav a:hover,
+.top-nav label:hover {
 	color: var(--clr3);
 }
 
-.top-nav a:focus {
+.top-nav a:focus,
+.top-nav label:focus {
 	color: var(--clr3);
 	text-decoration: underline;
+}
+
+.file-input {
+	display: none;
 }

@@ -8,6 +8,7 @@ function init() {
 function renderMemeGallery(filterBy) {
 	//add containers to gallery
 	const imgs = getImgsForDisplay(filterBy)
+	console.log(imgs)
 	const elGallery = document.querySelector('.img-gallery')
 	elGallery.innerHTML = ''
 	imgs.forEach(img => {
@@ -20,6 +21,7 @@ function renderMemeGallery(filterBy) {
 
 function getImgsForDisplay(filterBy = 'all') {
 	let newId = 0
+	if (filterBy === 'memes') return showSaved()
 	if (filterBy === 'all') return resetId()
 	//sets id by for render by keyword
 	return gImgs.filter(img => {
@@ -45,6 +47,13 @@ function onFilterBy(el) {
 	renderKeyWordBar()
 	renderMemeGallery(val)
 }
+function onSearchBy(el) {
+	const elSearch = document.querySelector('.search-input')
+	incrementKeywordMap(elSearch.value)
+	renderKeyWordBar()
+	renderMemeGallery(elSearch.value)
+	elSearch.value = ''
+}
 
 function renderKeyWordBar() {
 	const elKeywords = document.querySelectorAll('.keywords span')
@@ -55,13 +64,59 @@ function renderKeyWordBar() {
 	})
 }
 
-function onToggleSearch() {
+function onOpenKeywords() {
 	const elKeywords = document.querySelector('.keywords')
-	elKeywords.classList.toggle('open')
 	const elExpandBtn = document.querySelector('.expand')
-	if (elExpandBtn.style.display === 'none') {
-		elExpandBtn.style.display = 'block'
-	} else {
-		elExpandBtn.style.display = 'none'
+	elKeywords.classList.add('open')
+	elExpandBtn.style.display = 'none'
+}
+
+function closeKeywords() {
+	const elKeywords = document.querySelector('.keywords')
+	const elExpandBtn = document.querySelector('.expand')
+	elKeywords.classList.remove('open')
+	elExpandBtn.style.display = 'block'
+}
+
+function onUpload(ev) {
+	// console.log(ev)
+	loadImageFromInput(ev, addImg)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+	var reader = new FileReader()
+	//After we read the file
+	reader.onload = function (event) {
+		var img = new Image() // Create a new html img element
+		img.src = event.target.result // Set the img src to the img file we read
+		//Run the callBack func , To render the img on the canvas
+		img.onload = onImageReady.bind(null, img.src)
 	}
+	reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
+}
+
+function addImg(img) {
+	const imgObj = {
+		id: img.length,
+		url: img
+	}
+	gImgs.unshift(imgObj)
+	resetId()
+	renderMemeGallery()
+}
+
+function showSaved() {
+	const memes = loadFromStorage('memes')
+	console.log(memes)
+	const imgsForDisplay = []
+	memes.forEach((meme, idx) => {
+		{
+			imgsForDisplay.push({
+				id: idx,
+				url: `assets/meme-imgs/${meme.selectedImgId}.jpg`
+			})
+		}
+	})
+	console.log(imgsForDisplay)
+	return imgsForDisplay
 }

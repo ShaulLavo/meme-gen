@@ -153,6 +153,7 @@ function createNewLine(txt = getRandSentence(memesSentences)) {
 function deleteLine() {
 	const idx = gMeme.selectedLineIdx
 	gMeme.lines.splice(idx, 1)
+	gMeme.selectedLineIdx = 0
 }
 
 function setLineMetrics(metrics, line) {
@@ -164,8 +165,3 @@ function setLineDrag(bol) {
 	if (!line) return
 	line.isDrag = bol
 }
-
-// function setClickedLine(clickedPos) {
-// 	const { pos } = gMeme.lines[gMeme.selectedLineIdx]
-
-// }

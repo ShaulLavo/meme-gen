@@ -15,18 +15,34 @@
             <span class="logo-meme"> Meme</span> Generator
         </h1>
         <nav class="top-nav flex">
+            <label for="files">upload</label>
+            <input type="file" id="files" class="file-input" name="image" onchange="onUpload(event)" />
             <a href="#gallery">Gallery</a>
-            <a href="#">Memes</a>
+            <a href="#" onclick="onFilterBy(this)">memes</a>
             <a href="#footer">About</a>
         </nav>
     </header>
 
     <nav class="search-nav main-layout flex">
-        <div class="search-bar flex">
+
+        <form class="search-bar flex" onsubmit="onSearchBy(this)">
             <span class="search-icon"></span>
-            <input class="search-input" type="search" placeholder="Search...">
-            <button class="search-btn">search</button>
-        </div>
+            <input list="keywords" class="search-input" type="search" placeholder="Search...">
+            <datalist id="keywords">
+                <option value="all">
+                <option value="animal">
+                <option value="cute">
+                <option value="art">
+                <option value="men">
+                <option value="woman">
+                <option value="baby">
+                <option value="baby">
+                <option value="movie">
+                </option>
+            </datalist>
+            <button type="submit" class="search-btn">search</button>
+        </form>
+
         <dev class="key-word-container  flex">
             <div class="keywords flex">
                 <span onclick="onFilterBy(this)">all</span>
@@ -43,7 +59,7 @@
                 <span onclick="onFilterBy(this)">politics</span>
 
             </div>
-            <span onclick="onToggleSearch()" class="expand">...more</span>
+            <span onclick="onOpenKeywords()" class="expand">...more</span>
         </dev>
     </nav>
 
@@ -86,7 +102,7 @@
                             <option value="'Brush Script MT'">Brush Script MT</option>
                         </select>
                     </span>
-                    <button>save</button>
+                    <button onclick="onSave()">save</button>
                     <span class="color-selction flex">
                         <label>Select color:</label>
                         <input oninput="onSetColor(this.value)" type="color" name="favcolor" value="#ffffff">
@@ -107,7 +123,7 @@
         </div>
 
     </main>
-    <footer id="footer flex">
+    <footer id="footer">
         <div class="footer-grid grid main-layout">
             <img src="assets/meme-imgs/0.jpg" alt="">
             <h3>about me</h3>

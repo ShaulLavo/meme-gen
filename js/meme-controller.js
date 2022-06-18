@@ -107,7 +107,7 @@ function onImgSelect(id) {
 	if (!meme || !(meme.selectedImgId === id)) {
 		setCurrMeme(id)
 	}
-	onToggleSearch()
+	closeKeywords()
 	renderMeme(id)
 	openEditModal()
 }
@@ -293,4 +293,12 @@ function onDownloadMeme(elLink) {
 	elLink.href = imgContent
 	meme.lines[gMeme.selectedLineIdx].isExport = false
 	renderMeme()
+}
+
+function onSave() {
+	let memes = loadFromStorage('memes')
+	console.log(memes)
+	if (!memes) memes = []
+	memes.push(gMeme)
+	saveToStorage('memes', memes)
 }

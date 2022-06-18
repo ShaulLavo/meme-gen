@@ -2,14 +2,9 @@
 } */
 
 .img-gallery {
-	padding: 50px;
-	background-color: var(--clr3);
 	margin: 0 auto;
 	margin-bottom: 60px;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-column-start: auto;
-	/* grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr),minmax(200px, 1fr),minmax(200px, 1fr) */
-	/* grid-template-rows: 1fr 1fr 1fr 1fr; */
 	gap: 20px;
 	border-radius: 1rem;
 	min-height: 920px;
@@ -17,7 +12,7 @@
 	overflow-y: scroll;
 }
 .img-gallery::-webkit-scrollbar {
-	background-color: var(--clr3);
+	background-color: #2f161b;
 	border-radius: 1rem;
 }
 
