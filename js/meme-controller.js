@@ -121,6 +121,10 @@ function openEditModal() {
 function onCloseModal() {
 	const elGallery = document.querySelector('.img-gallery ')
 	const elEditModal = document.querySelector('.edit-modal')
+	const elLink = document.querySelector('.share-link')
+	const elMsg = document.querySelector('.user-msg')
+	elLink.innerText = ''
+	elMsg.innerText = ''
 	elGallery.style.display = 'grid'
 	elEditModal.style.display = 'none'
 }
@@ -137,8 +141,9 @@ function renderMeme() {
 function renderImg(img) {
 	// if (!img) return
 	//Draw the img on the canvas
-	gElCanvas.width = img.width
-	gElCanvas.height = img.height
+	const ratio = 500 / img.width //max  canvas width
+	gElCanvas.width = img.width *= ratio
+	gElCanvas.height = img.height *= ratio
 	gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
@@ -269,7 +274,7 @@ function drawLineSelection() {
 	gCtx.setLineDash([5])
 	gCtx.strokeStyle = 'black'
 	gCtx.lineWidth = 1
-	if (!(line.txt === '')) gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8) //&& !isDownload
+	if (!(line.txt === '') && !line.isExport) gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8) //&& !isDownload
 	// handel now chars
 	// adjustments to make rect a bit bigger
 }
@@ -280,6 +285,11 @@ function onStickerSelect(sticker) {
 }
 
 function onDownloadMeme(elLink) {
+	const meme = getMeme()
+	meme.lines[gMeme.selectedLineIdx].isExport = true
+	renderMeme()
 	var imgContent = gElCanvas.toDataURL('image/jpeg')
 	elLink.href = imgContent
+	meme.lines[gMeme.selectedLineIdx].isExport = false
+	renderMeme()
 }

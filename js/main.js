@@ -1,7 +1,7 @@
 'use-strict'
 
 const gImgs = []
-const gImgCount = 16
+const gImgCount = 18
 
 function init() {
 	createImgDb()

@@ -143,7 +143,8 @@ function createNewLine(txt = getRandSentence(memesSentences)) {
 		color: 'white',
 		font: 'Impact',
 		pos: { x: 250, y: 250 },
-		isDrag: false
+		isDrag: false,
+		isExport: false
 	})
 	gMeme.isAutoFitSize = true
 	gMeme.selectedLineIdx = gMeme.lines.length - 1 //set last added line to current

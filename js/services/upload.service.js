@@ -1,11 +1,16 @@
 function onUploadImg() {
+	const meme = getMeme()
+	meme.lines[gMeme.selectedLineIdx].isExport = true
+	renderMeme()
 	const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
+
+	meme.lines[gMeme.selectedLineIdx].isExport = false
+	renderMeme()
 
 	// A function to be called if request succeeds
 	function onSuccess(uploadedImgUrl) {
 		//Encode the instance of certain characters in the url
 		const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-		console.log(encodedUploadedImgUrl)
 		document.querySelector('.user-msg').innerText = `Your photo is available here: ${uploadedImgUrl}`
 		//Create a link that on click will make a post in facebook with the image we uploaded
 		document.querySelector('.share-link').innerHTML = `

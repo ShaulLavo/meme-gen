@@ -2,8 +2,8 @@
 	margin: auto;
 	width: 200px;
 	height: 200px;
-	background-size: contain;
-	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
 	background-color: var(--clr3);
 	border-radius: 1rem;
 }
