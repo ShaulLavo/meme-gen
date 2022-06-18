@@ -44,6 +44,7 @@
         </form>
 
         <dev class="key-word-container  flex">
+            <div onclick="onOpenKeywords()" class="expand">more.. </div>
             <div class="keywords flex">
                 <span onclick="onFilterBy(this)">all</span>
                 <span onclick="onFilterBy(this)">funny</span>
@@ -59,7 +60,6 @@
                 <span onclick="onFilterBy(this)">politics</span>
 
             </div>
-            <span onclick="onOpenKeywords()" class="expand">...more</span>
         </dev>
     </nav>
 
@@ -88,25 +88,28 @@
                         alt="down"></button>
                 <button onclick="onAddLine()" class="option-add"><img src="assets/svg/plus-line.svg"
                         alt="add line"></button>
-                <button onclick="onDeleteLine()" class="option-delete">Delete</button>
+                <button onclick="onDeleteLine()" class="option-delete"><img src="assets/svg/delete.svg"
+                        alt="delete"></button>
                 <div class="option-btn-container grid">
-                    <button onclick="onFontInc()"><img src="assets/svg/font-size-increase.svg" alt="A+"></button>
+                    <button class="inc-font" onclick="onFontInc()"><img src="assets/svg/font-size-increase.svg"
+                            alt="A+"></button>
                     <button onclick="onFontDec()"><img src="assets/svg/font-size-decrease.svg" alt="A-"></button>
                     <button onclick="onAlign('left')"><img src="assets/svg/text-align-left.svg" alt="left"></button>
                     <button onclick="onAlign('center')"><img src="assets/svg/text-align-justify.svg"
                             alt="center"></button>
                     <button onclick="onAlign('right')"><img src="assets/svg/text-align-right.svg" alt="right"></button>
-                    <span class="font-select">
-                        <select onchange="onFontSelect(this.value)" type="select">
-                            <option value="impact">Impact</option>
-                            <option value="arial">Arial</option>
-                            <option value="verdana">Verdana</option>
-                            <option value="'Times New Roman'">Times New Roman</option>
-                            <option value="'Courier New'">Courier New</option>
-                            <option value="'Brush Script MT'">Brush Script MT</option>
-                        </select>
-                    </span>
-                    <button onclick="onSave()"><img src="assets/svg/save-as.svg" alt="save"></button>
+
+                    <select class="font-select" onchange="onFontSelect(this.value)" type="select">
+                        <option value="impact">Impact</option>
+                        <option value="arial">Arial</option>
+                        <option value="verdana">Verdana</option>
+                        <option value="'Times New Roman'">Times New Roman</option>
+                        <option value="'Courier New'">Courier New</option>
+                        <option value="'Brush Script MT'">Brush Script MT</option>
+                    </select>
+
+                    <button class="save-option" onclick="onSave()"><img src="assets/svg/save-as.svg"
+                            alt="save"></button>
                     <span class="color-selction flex">
                         <label>Select color:</label>
                         <input oninput="onSetColor(this.value)" type="color" name="favcolor" value="#ffffff">
@@ -120,11 +123,11 @@
                     <span onclick='onStickerSelect(this.innerText)'>😆</span>
                     <span onclick='onStickerSelect(this.innerText)'>🤢</span>
                 </div>
-                <button onclick="onUploadImg()" class="share"><img src="assets/svg/share-square-line.svg"
+                <button onclick="onUploadImg()" class="share"><img src=" assets/svg/share-square-line.svg"
                         alt="share"></button>
 
-                <a href="#" class="download" onclick="onDownloadMeme(this)" download="my-meme.jpg"><img
-                        src="assets/svg/download-files.svg" alt="download"></a>
+                <button class="download"> <a href="#" class="download" onclick="onDownloadMeme(this)"
+                        download="my-meme.jpg"><img src="assets/svg/download-files.svg" alt="download"></a></button>
             </div>
         </div>
 

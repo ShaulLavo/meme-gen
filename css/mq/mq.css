@@ -1,0 +1,37 @@
+/* @media screen and (max-width:820px) { */
+
+/* small */
+@media screen and (min-width: 720px) {
+	.img-gallery {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 920px) {
+	.search-nav {
+		flex-direction: column;
+	}
+	.keywords {
+		max-width: 900px;
+	}
+	.expand {
+		display: none;
+	}
+}
+/* WIDE */
+@media screen and (min-width: 1020px) {
+	.img-gallery {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+	.edit-modal {
+		flex-direction: row;
+		max-width: 1000px;
+	}
+	.edit-modal .option-container {
+		padding: 10px;
+	}
+	.edit-modal .option-container button {
+		height: 90%;
+		width: 90%;
+	}
+}

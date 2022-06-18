@@ -4,7 +4,7 @@
 .img-gallery {
 	margin: 0 auto;
 	margin-bottom: 60px;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	gap: 20px;
 	border-radius: 1rem;
 	min-height: 920px;

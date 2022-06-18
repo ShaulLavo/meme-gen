@@ -65,9 +65,9 @@ function renderKeyWordBar() {
 }
 
 function onOpenKeywords() {
-	const elKeywords = document.querySelector('.keywords')
+	const elKeywordContainer = document.querySelector('.search-nav')
 	const elExpandBtn = document.querySelector('.expand')
-	elKeywords.classList.add('open')
+	elKeywordContainer.style.flexDirection = 'column'
 	elExpandBtn.style.display = 'none'
 }
 

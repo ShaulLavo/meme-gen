@@ -1,6 +1,7 @@
 .search-nav {
 	margin: auto;
 	margin-bottom: 20px;
+	overflow: hidden;
 }
 
 .search-bar {
@@ -10,6 +11,8 @@
 	align-items: center;
 	padding: 0 20px;
 	height: 80px;
+	max-width: 620px;
+	margin-left: 0;
 }
 .search-bar > * {
 	background: none;
@@ -68,21 +71,13 @@
 
 .keywords {
 	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 330px;
+
 	/* align-items: center; */
 }
 .keywords > * {
 	align-self: center;
-
 	margin-right: 5px;
 }
-
-.open {
-	position: relative;
-	bottom: -80px;
-	left: -620px;
-	/* width: 920px; */
-	max-width: 920px;
+.expand {
+	marign: 10px;
 }
