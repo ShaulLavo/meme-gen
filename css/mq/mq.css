@@ -26,6 +26,7 @@
 	.edit-modal {
 		flex-direction: row;
 		max-width: 1000px;
+		min-height: 1020px;
 	}
 	.edit-modal .option-container {
 		padding: 10px;
