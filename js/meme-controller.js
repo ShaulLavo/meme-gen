@@ -107,6 +107,7 @@ function onImgSelect(id) {
 	if (!meme || !(meme.selectedImgId === id)) {
 		setCurrMeme(id)
 	}
+	onToggleSearch()
 	renderMeme(id)
 	openEditModal()
 }

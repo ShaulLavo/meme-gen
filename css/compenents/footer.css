@@ -1,5 +1,8 @@
 footer {
 	background-color: var(--clr1);
+	position: relative;
+	bottom: 0;
+	width: 100%;
 }
 .footer-grid {
 	padding: 40px;

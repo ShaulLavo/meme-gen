@@ -27,12 +27,23 @@
             <input class="search-input" type="search" placeholder="Search...">
             <button class="search-btn">search</button>
         </div>
-        <dev class="key-words  flex">
-            <span>funny</span>
-            <span>ANIMAL</span>
-            <span>men</span>
-            <span>woman</span>
-            <span class="expand">...more</span>
+        <dev class="key-word-container  flex">
+            <div class="keywords flex">
+                <span onclick="onFilterBy(this)">all</span>
+                <span onclick="onFilterBy(this)">funny</span>
+                <span onclick="onFilterBy(this)">animal</span>
+                <span onclick="onFilterBy(this)">men</span>
+                <span onclick="onFilterBy(this)">woman</span>
+                <span onclick="onFilterBy(this)">art</span>
+                <span onclick="onFilterBy(this)">cute</span>
+                <span onclick="onFilterBy(this)">dog</span>
+                <span onclick="onFilterBy(this)">baby</span>
+                <span onclick="onFilterBy(this)">movie</span>
+                <span onclick="onFilterBy(this)">tv</span>
+                <span onclick="onFilterBy(this)">politics</span>
+
+            </div>
+            <span onclick="onToggleSearch()" class="expand">...more</span>
         </dev>
     </nav>
 
@@ -111,7 +122,7 @@
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/upload.service.js"></script>
     <script src="js/services/meme.service.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/imgDb.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
 </body>

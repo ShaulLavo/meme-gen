@@ -56,12 +56,33 @@
 	background-size: 70px 70px;
 }
 
-.key-words {
+.key-word-container {
 	width: 100%;
 	justify-content: space-around;
 	align-items: center;
 	font-family: inter-reg, sans-serif;
 }
-.key-words span:hover {
+.key-word-container span:hover {
 	color: var(--clr3);
+}
+
+.keywords {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 330px;
+	/* align-items: center; */
+}
+.keywords > * {
+	align-self: center;
+
+	margin-right: 5px;
+}
+
+.open {
+	position: relative;
+	bottom: -80px;
+	left: -620px;
+	/* width: 920px; */
+	max-width: 920px;
 }
