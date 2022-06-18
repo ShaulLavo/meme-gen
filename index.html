@@ -82,16 +82,20 @@
                         type="text">
                     <!-- <button onclick="onSetLineTxt()">submit</button> -->
                 </span>
-                <button onmousedown="onMoveLineUp()" class="option-up">up</button>
-                <button onmousedown="onMoveLineDown()" class="option-down">down</button>
-                <button onclick="onAddLine()" class="option-add">Add New Line</button>
+                <button onmousedown="onMoveLineUp()" class="option-up"><img src="assets/svg/up-arrow.svg"
+                        alt="up"></button>
+                <button onmousedown="onMoveLineDown()" class="option-down"><img src="assets/svg/down-arrow.svg"
+                        alt="down"></button>
+                <button onclick="onAddLine()" class="option-add"><img src="assets/svg/plus-line.svg"
+                        alt="add line"></button>
                 <button onclick="onDeleteLine()" class="option-delete">Delete</button>
                 <div class="option-btn-container grid">
-                    <button onclick="onFontInc()">A+</button>
-                    <button onclick="onFontDec()">A-</button>
-                    <button onclick="onAlign('left')">align-left</button>
-                    <button onclick="onAlign('center')">align-center</button>
-                    <button onclick="onAlign('right')">align-right</button>
+                    <button onclick="onFontInc()"><img src="assets/svg/font-size-increase.svg" alt="A+"></button>
+                    <button onclick="onFontDec()"><img src="assets/svg/font-size-decrease.svg" alt="A-"></button>
+                    <button onclick="onAlign('left')"><img src="assets/svg/text-align-left.svg" alt="left"></button>
+                    <button onclick="onAlign('center')"><img src="assets/svg/text-align-justify.svg"
+                            alt="center"></button>
+                    <button onclick="onAlign('right')"><img src="assets/svg/text-align-right.svg" alt="right"></button>
                     <span class="font-select">
                         <select onchange="onFontSelect(this.value)" type="select">
                             <option value="impact">Impact</option>
@@ -102,7 +106,7 @@
                             <option value="'Brush Script MT'">Brush Script MT</option>
                         </select>
                     </span>
-                    <button onclick="onSave()">save</button>
+                    <button onclick="onSave()"><img src="assets/svg/save-as.svg" alt="save"></button>
                     <span class="color-selction flex">
                         <label>Select color:</label>
                         <input oninput="onSetColor(this.value)" type="color" name="favcolor" value="#ffffff">
@@ -116,9 +120,11 @@
                     <span onclick='onStickerSelect(this.innerText)'>😆</span>
                     <span onclick='onStickerSelect(this.innerText)'>🤢</span>
                 </div>
-                <button onclick="onUploadImg()" class="share">share</button>
+                <button onclick="onUploadImg()" class="share"><img src="assets/svg/share-square-line.svg"
+                        alt="share"></button>
 
-                <a href="#" class="download" onclick="onDownloadMeme(this)" download="my-meme.jpg">Download</a>
+                <a href="#" class="download" onclick="onDownloadMeme(this)" download="my-meme.jpg"><img
+                        src="assets/svg/download-files.svg" alt="download"></a>
             </div>
         </div>
 

@@ -64,15 +64,21 @@
 	border: none;
 	font-family: inter-reg, sans-serif;
 }
-/* .option-up {
+.option-up {
+	width: 70px;
 }
 .option-down {
+	width: 70px;
 }
 
 .option-plus {
 }
 .option-delete {
-} */
+	width: 70px;
+}
+.option-add img {
+	width: 70px;
+}
 
 .edit-modal .option-btn-container {
 	grid-row: 3/5;

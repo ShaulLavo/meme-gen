@@ -124,7 +124,7 @@ function setFont(font) {
 	currLine.font = font
 	gMeme.isAutoFitSize = true //fit to new font size
 }
-1
+
 function setColor(val) {
 	const currLine = gMeme.lines[gMeme.selectedLineIdx]
 	currLine.color = val
