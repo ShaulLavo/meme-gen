@@ -58,10 +58,10 @@ function getImageById(id) {
 }
 
 function setLineTxt(txt) {
-	let line = gMeme.lines[gMeme.selectedLineIdx]
+	let line = getCurrLine()
 	if (!line) {
 		createNewLine()
-		line = gMeme.lines[gMeme.selectedLineIdx]
+		line = getCurrLine()
 	}
 	line.txt = txt
 	gMeme.isAutoFitSize = true
@@ -87,18 +87,18 @@ function fitFontSize(sentence, font, size) {
 }
 
 function setFontSize(num) {
-	if (gMeme.lines[gMeme.selectedLineIdx].size > 200) num *= 10 // make it easier to adjust big font sizes
-	gMeme.lines[gMeme.selectedLineIdx].size += num
+	if (getCurrLine().size > 200) num *= 10 // make it easier to adjust big font sizes
+	getCurrLine().size += num
 }
 
 // function alignTxt(side) {
-// 	gMeme.lines[gMeme.selectedLineIdx].align = side
+// 	getCurrLine().align = side
 // }
 
 function alignTxt(side) {
-	const line = gMeme.lines[gMeme.selectedLineIdx]
+	const line = getCurrLine()
 	const pos = line.pos
-	const { width } = getLineMetrics(gMeme.lines[gMeme.selectedLineIdx])
+	const { width } = getLineMetrics(getCurrLine())
 	switch (side) {
 		case 'right':
 			pos.x = gElCanvas.width - width / 2
@@ -114,24 +114,24 @@ function alignTxt(side) {
 }
 
 function moveLine(dy, dx = 0) {
-	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+	const currLine = getCurrLine()
 	currLine.pos.y += dy
 	currLine.pos.x += dx
 }
 
 function setFont(font) {
-	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+	const currLine = getCurrLine()
 	currLine.font = font
 	gMeme.isAutoFitSize = true //fit to new font size
 }
 
 function setColor(val) {
-	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+	const currLine = getCurrLine()
 	currLine.color = val
 }
 
 function setStrokeColor(val) {
-	const currLine = gMeme.lines[gMeme.selectedLineIdx]
+	const currLine = getCurrLine()
 	currLine.strokeColor = val
 }
 
@@ -161,7 +161,11 @@ function setLineMetrics(metrics, line) {
 }
 
 function setLineDrag(bol) {
-	const line = gMeme.lines[gMeme.selectedLineIdx]
+	const line = getCurrLine()
 	if (!line) return
 	line.isDrag = bol
+}
+
+function getCurrLine() {
+	return gMeme.lines[gMeme.selectedLineIdx]
 }

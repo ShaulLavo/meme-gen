@@ -67,6 +67,8 @@ function renderKeyWordBar() {
 function onOpenKeywords() {
 	const elKeywordContainer = document.querySelector('.search-nav')
 	const elExpandBtn = document.querySelector('.expand')
+	const elMoreWords = document.querySelector('.more')
+	elMoreWords.style.display = 'inline'
 	elKeywordContainer.style.flexDirection = 'column'
 	elExpandBtn.style.display = 'none'
 }
@@ -74,12 +76,13 @@ function onOpenKeywords() {
 function closeKeywords() {
 	const elKeywordContainer = document.querySelector('.search-nav')
 	const elExpandBtn = document.querySelector('.expand')
+	const elMoreWords = document.querySelector('.more')
+	elMoreWords.style.display = 'none'
 	elKeywordContainer.style.flexDirection = 'row'
 	elExpandBtn.style.display = 'block'
 }
 
 function onUpload(ev) {
-	// console.log(ev)
 	loadImageFromInput(ev, addImg)
 }
 

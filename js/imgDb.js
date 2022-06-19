@@ -1,13 +1,13 @@
 'use-strict'
 
 const gKeywordSearchCountMap = {
-	funny: 20,
-	cat: 20,
-	baby: 17,
-	animal: 16,
-	men: 18,
-	woman: 19,
-	all: 24
+	funny: 24,
+	cat: 24,
+	baby: 22,
+	animal: 18,
+	men: 21,
+	woman: 22,
+	all: 19
 }
 const gImgs = [
 	{

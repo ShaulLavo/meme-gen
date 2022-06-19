@@ -4,10 +4,9 @@
 /*
 remove globals from controller
 add min font size
-make a hard coded array of imgs
 add reset inputs functions
-clean code with dome destruction
-
+stroke color bug
+auto-fit bug
 */
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 let gElCanvas
@@ -42,7 +41,7 @@ function onDown(ev) {
 	const pos = getEvPos(ev)
 	if (!isLineClicked(pos)) return
 	setLineDrag(true)
-	document.body.style.cursor = 'grabbing'
+	// document.body.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
@@ -61,7 +60,7 @@ function onMove(ev) {
 
 function onUp() {
 	setLineDrag(false)
-	document.body.style.cursor = 'grab'
+	// document.body.style.cursor = 'grab'
 }
 
 function getEvPos(ev) {
@@ -142,7 +141,7 @@ function renderMeme() {
 function renderImg(img) {
 	// if (!img) return
 	//Draw the img on the canvas
-	const ratio = 500 / img.width //max  canvas width
+	const ratio = 500 / img.height //max  canvas height
 	gElCanvas.width = img.width *= ratio
 	gElCanvas.height = img.height *= ratio
 	gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
@@ -171,12 +170,12 @@ function renderLines(meme) {
 }
 
 function onSetLineTxt() {
-	const txt = document.querySelector('.txt-input input').value
+	const txt = document.querySelector('.txt-input').value
 	setLineTxt(txt)
 }
 
 function onShowLineTxt() {
-	const txt = document.querySelector('.txt-input input').value
+	const txt = document.querySelector('.txt-input').value
 	setLineTxt(txt)
 	renderMeme()
 }
@@ -191,7 +190,6 @@ function onFontDec() {
 }
 
 // align left actually aligns right cus make more sense
-//todo make align to edge + refactor to switch case
 function onAlign(side) {
 	alignTxt(side)
 	renderMeme()
@@ -218,18 +216,6 @@ function onMoveLineDown() {
 function onStopLineDown() {
 	clearInterval(gInterval)
 }
-
-// ? what's wrong with this code?
-// onmousedown="onMoveLineUp(true)" onmouseup="onStopLineUp(false)"
-// function onMoveLineUp(isPressed) {
-// 	if (isPressed) {
-// 		const interval = setInterval(() => {
-// 			moveLine(-2)
-// 			renderMeme()
-// 		}, 100)
-// 	}
-// 	else clearInterval(interval)
-// }
 
 function onFontSelect(val) {
 	setFont(val)
@@ -270,12 +256,12 @@ function getLineMetrics(line) {
 
 function drawLineSelection() {
 	//TODO add circles in corners or maybe even photoshop like animation
-	const line = gMeme.lines[gMeme.selectedLineIdx]
+	const line = getCurrLine()
 	const { x, y, width, height } = getLineMetrics(line)
 	gCtx.setLineDash([5])
 	gCtx.strokeStyle = 'black'
 	gCtx.lineWidth = 1
-	if (!(line.txt === '') && !line.isExport) gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8) //&& !isDownload
+	if (!(line.txt === '') && !line.isExport) gCtx.strokeRect(x - 4, y - 4, width + 8, height + 8)
 	// handel now chars
 	// adjustments to make rect a bit bigger
 }

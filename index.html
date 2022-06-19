@@ -11,14 +11,14 @@
 
 <body onmouseup="onStopLineUp()" onmouseup="onStopLineDown()" onload="init()">
     <header class="flex main-layout">
-        <h1 class="logo">
+        <h1 class="logo" onclick="onCloseModal()">
             <span class="logo-meme"> Meme</span> Generator
         </h1>
         <nav class="top-nav flex">
-            <label for="files">upload</label>
+            <label onclick="onCloseModal()" for="files">upload</label>
             <input type="file" id="files" class="file-input" name="image" onchange="onUpload(event)" />
-            <a href="#gallery">Gallery</a>
-            <a href="#" onclick="onFilterBy(this)">memes</a>
+            <a href="#gallery" onclick="onCloseModal()">Gallery</a>
+            <a href="#" onclick="onFilterBy(this)" onclick="onCloseModal()">memes</a>
             <a href="#footer">About</a>
         </nav>
     </header>
@@ -44,20 +44,22 @@
         </form>
 
         <dev class="key-word-container  flex">
-            <div onclick="onOpenKeywords()" class="expand">more.. </div>
             <div class="keywords flex">
                 <span onclick="onFilterBy(this)">all</span>
                 <span onclick="onFilterBy(this)">funny</span>
                 <span onclick="onFilterBy(this)">animal</span>
                 <span onclick="onFilterBy(this)">men</span>
                 <span onclick="onFilterBy(this)">woman</span>
-                <span onclick="onFilterBy(this)">art</span>
-                <span onclick="onFilterBy(this)">cute</span>
                 <span onclick="onFilterBy(this)">dog</span>
                 <span onclick="onFilterBy(this)">baby</span>
                 <span onclick="onFilterBy(this)">movie</span>
                 <span onclick="onFilterBy(this)">tv</span>
-                <span onclick="onFilterBy(this)">politics</span>
+                <div class="more">
+                    <span onclick="onFilterBy(this)">politics</span>
+                    <span onclick="onFilterBy(this)">art</span>
+                    <span onclick="onFilterBy(this)">cute</span>
+                </div>
+                <div onclick="onOpenKeywords()" class="expand">more.. </div>
 
             </div>
         </dev>
@@ -73,15 +75,12 @@
         </div>
 
         <div class="edit-modal flex main-layout">
-            <button class="close-modal" onclick="onCloseModal()">X</button>
             <canvas class="img-editor"></canvas>
             <div class="option-container grid">
-                <span class="txt-input">
-                    <h2>Type to change line text:</h2>
-                    <input onchange="onSetLineTxt()" oninput="onShowLineTxt()" placeholder="Enter your text.."
-                        type="text">
-                    <!-- <button onclick="onSetLineTxt()">submit</button> -->
-                </span>
+                <button class="close-modal" onclick="onCloseModal()">X</button>
+                <h2 class="input-title">Type to change line text:</h2>
+                <input class="txt-input" onchange="onSetLineTxt()" oninput="onShowLineTxt()"
+                    placeholder="Enter your text.." type="text">
                 <button onmousedown="onMoveLineUp()" class="option-up"><img src="assets/svg/up-arrow.svg"
                         alt="up"></button>
                 <button onmousedown="onMoveLineDown()" class="option-down"><img src="assets/svg/down-arrow.svg"
@@ -99,7 +98,8 @@
                             alt="center"></button>
                     <button onclick="onAlign('right')"><img src="assets/svg/text-align-right.svg" alt="right"></button>
 
-                    <select class="font-select" onchange="onFontSelect(this.value)" type="select">
+                    <!-- <label for="font-select">font:</label> -->
+                    <select id="font-select" class="font-select" onchange="onFontSelect(this.value)" type="select">
                         <option value="impact">Impact</option>
                         <option value="arial">Arial</option>
                         <option value="verdana">Verdana</option>
@@ -111,9 +111,11 @@
                     <button class="save-option" onclick="onSave()"><img src="assets/svg/save-as.svg"
                             alt="save"></button>
                     <span class="color-selection flex">
-                        <label>Select color:</label>
-                        <input oninput="onSetColor(this.value)" type="color" name="favcolor" value="#ffffff">
-                        <input oninput="onSetStrokeColor(this.value)" type="color" name="favcolor" value="#000000">
+                        <label for="color"><img src="assets/svg/fill.svg" alt="fill"></button></label>
+                        <input oninput="onSetColor(this.value)" id="color" type="color" name="color" value="#ffffff">
+                        <label class="stroke" for="stroke-color"><img src="assets/svg/stroke.svg" alt="stroke"></label>
+                        <input oninput="onSetStrokeColor(this.value)" id="stroke-color" type="color" name="stroke-color"
+                            value="#000000">
                     </span>
                 </div>
                 <div class="sticker-container flex">

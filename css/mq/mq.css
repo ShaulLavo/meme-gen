@@ -7,17 +7,6 @@
 	}
 }
 
-@media screen and (max-width: 920px) {
-	.search-nav {
-		flex-direction: column;
-	}
-	.keywords {
-		max-width: 900px;
-	}
-	.expand {
-		display: none;
-	}
-}
 /* WIDE */
 @media screen and (min-width: 1020px) {
 	.img-gallery {
@@ -25,14 +14,13 @@
 	}
 	.edit-modal {
 		flex-direction: row;
-		max-width: 1000px;
-		min-height: 1020px;
+		min-width: 1020px;
 	}
 	.edit-modal .option-container {
 		padding: 10px;
+		margin-top: 0;
 	}
-	.edit-modal .option-container button {
-		height: 90%;
-		width: 90%;
+	.search-bar {
+		width: 620px;
 	}
 }

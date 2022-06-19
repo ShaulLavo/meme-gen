@@ -1,30 +1,25 @@
 .edit-modal {
-	max-width: 800px;
+	flex-direction: column;
 	margin: auto;
 	grid-template-columns: 1fr 1fr;
 	place-items: center;
-	justify-content: space-around;
 	padding: 5px;
 	border-radius: 1rem;
 	margin-bottom: 60px;
 	display: none;
-	flex-direction: column;
+	min-height: 800px;
 }
 .edit-modal * {
 	font-family: inter-bold, sans-serif;
 	font-size: 1.2rem;
 }
-.edit-modal button:active {
-	color: var(--clr3);
-	background-color: #281a1e;
+.edit-modal .option-container label:hover {
+	background-color: #ffde71;
+	cursor: pointer;
 }
-.edit-modal button:hover {
-	color: var(--clr3);
-}
-.edit-modal .close-modal {
-	align-self: start;
-	width: 2rem;
-	border-radius: 0.8rem;
+.edit-modal .option-container button:hover {
+	background-color: #ffde71;
+	cursor: pointer;
 }
 
 .edit-modal canvas {
@@ -33,78 +28,120 @@
 }
 
 .edit-modal .option-container {
-	margin-right: 30px;
 	margin-top: 20px;
 	border-radius: 1rem;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(6, 1fr);
+	grid-template-rows: repeat(7, 1fr);
 	box-shadow: 0px 0px 0 3px var(--clr3);
+	height: 500px;
+	min-width: 300px;
+	place-items: center;
+	width: 600px;
 }
-.edit-modal .option-container button {
-	height: 60%;
-	width: 60%;
-}
+
 .edit-modal .option-container > * {
-	margin: auto;
 	border-radius: 0.8rem;
 }
-.txt-input {
-	grid-column: 1 / 5;
+
+.option-container button {
+	width: 90%;
+	height: 90%;
+}
+.option-container .close-modal {
+	border-radius: 0.8rem;
+	grid-column: 4;
+	grid-row: 1;
+	height: 40px;
+	width: 40px;
+	align-self: start;
+	justify-self: end;
+	font-size: 1.1rem;
+	line-height: 1.1rem;
 }
 
-.txt-input h2 {
+.input-title {
 	font-size: 1.5rem;
+	grid-column: 1 / 4;
+	grid-row: 1;
+	margin: 0;
+	/* color: var(--clr3); */
+	text-shadow: 2px 2px #000000;
 }
 
-.txt-input input {
+.txt-input {
 	border-radius: 0.8rem;
 	padding: 5px;
 	border: none;
 	font-family: inter-reg, sans-serif;
 	width: 100%;
+	grid-column: 1 / 5;
+	grid-row: 2;
+	width: 90%;
 }
 
 .edit-modal .option-btn-container {
-	grid-row: 3/5;
+	grid-row: 4/6;
 	grid-column: 1 / 5;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	background-color: var(--clr7);
 	padding: 10px;
 	width: 100%;
 	height: 100%;
+	place-items: center;
 }
 .option-btn-container > * {
-	/* width: 95%
-	height: 95%; */
 	border-radius: 0.8rem;
 }
 .option-btn-container .font-select {
-	grid-column: 1/4;
-	width: 100%;
-	height: 40%;
+	grid-column: 1/3;
+	width: 90%;
+	height: 80%;
+	font-size: 1rem;
 	place-self: center;
+	text-align: center;
 }
 
+#color,
+#stroke-color {
+	display: none;
+}
 .sticker-container {
-	width: 100%;
-	height: 50%;
+	width: 90%;
+	/* width: 100%; */
+	height: 60%;
 	place-self: center;
 	justify-content: space-around;
 	align-items: center;
-	grid-row: 5;
+	grid-row: 6;
 	grid-column: 1 / 5;
-	background-color: #775861;
+	background-color: var(--clr3);
 }
 
 .option-container img {
-	width: 40%;
-}
-.option-brn-container img {
 	width: 100%;
+	height: 100%;
 }
+.option-container button,
+.option-btn-container button {
+	height: 50px;
+	box-shadow: inset -1px 0px 0px 1px rgb(0 0 0);
+	padding: 10px;
+}
+
+.option-container button:nth-child(3n-1) {
+	background: #acbd69;
+}
+.option-container button:nth-child(3n + 1) {
+	background: #31887c;
+}
+.option-container button:nth-child(3n) {
+	background: #256873;
+}
+.option-container button:nth-child(2n + 4) {
+	background: var(--clr3);
+}
+
 .save-option {
-	height: 40%;
-	grid-column: 4;
 	place-self: center;
 }
 
@@ -113,7 +150,6 @@
 }
 
 .share-container {
-	height: 50px;
 	flex-direction: column;
 	margin: auto;
 	align-items: center;
@@ -124,7 +160,22 @@
 }
 
 .color-selection {
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
+	/* flex-direction: column; */
+	align-items: space-between;
+	grid-column: 4/6;
+	width: 90%;
+	height: 90%;
+}
+
+.color-selection label {
+	background: #acbd69;
+	padding: 4px;
+	border-radius: 0.5rem;
+	box-shadow: inset -1px 0px 0px 2px rgb(0 0 0);
+	margin-left: 5px;
+}
+
+.color-selection label:nth-child(1) {
+	background: #256873;
+	/* margin-right: 50px; */
 }
