@@ -125,6 +125,7 @@ function moveLine(dy, dx = 0) {
 function setFont(font) {
 	const currLine = getCurrLine()
 	currLine.font = font
+	currLine.isAutoFitSize = true
 	gMeme.isAutoFitSize = true //fit to new font size
 }
 
