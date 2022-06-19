@@ -6,6 +6,18 @@ remove globals from controller
 add min font size
 */
 
+function onImgSelect(id) {
+	initCanvas()
+	let meme = getMeme()
+	if (!meme || !(meme.selectedImgId === id)) {
+		setCurrMeme(id)
+	}
+	closeKeywords()
+	renderMeme()
+	openEditModal()
+	onAlign('center') // to align with dynamic canvas size
+}
+
 function initCanvas() {
 	gElCanvas = document.querySelector('.edit-modal canvas')
 	gCtx = gElCanvas.getContext('2d')
@@ -91,17 +103,6 @@ function setSelectedLine(idx) {
 	const meme = getMeme()
 	meme.selectedLineIdx = idx
 	renderMeme(meme.selectedImgId)
-}
-
-function onImgSelect(id) {
-	initCanvas()
-	let meme = getMeme()
-	if (!meme || !(meme.selectedImgId === id)) {
-		setCurrMeme(id)
-	}
-	closeKeywords()
-	renderMeme(id)
-	openEditModal()
 }
 
 function openEditModal() {
