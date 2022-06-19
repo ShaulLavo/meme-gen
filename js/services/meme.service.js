@@ -15,7 +15,10 @@ const memesSentences = [
 	'JS what is this?',
 	'Write hello world , add to cv 7 years experienced'
 ]
-
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
+let gElCanvas
+let gCtx
+let gInterval
 let gMeme
 
 function getMeme(id) {
@@ -24,7 +27,6 @@ function getMeme(id) {
 
 function setCurrMeme(id) {
 	gMeme = {
-		isAutoFitSize: true, //auto fit size feature
 		selectedImgId: id,
 		selectedLineIdx: 0,
 		lines: [
@@ -35,6 +37,7 @@ function setCurrMeme(id) {
 				color: 'white',
 				strokeColor: 'black',
 				font: 'Impact',
+				isAutoFitSize: true, //auto fit size on creation and font change
 				pos: { x: 250, y: 250 }
 			}
 		]
@@ -64,25 +67,24 @@ function setLineTxt(txt) {
 		line = getCurrLine()
 	}
 	line.txt = txt
-	gMeme.isAutoFitSize = true
 }
 
-//TODO bug - this scales all lines not only the selected one
 // auto fit font size feature
-function fitFontSize(sentence, font, size) {
-	if (!gMeme.isAutoFitSize) return size
+function fitFontSize(line, sentence, font, size) {
+	if (!line.isAutoFitSize) return size
 	if (gCtx.measureText(sentence).width > gElCanvas.width) {
 		while (gCtx.measureText(sentence).width > gElCanvas.width) {
 			size--
 			gCtx.font = `${size}px ${font}`
 		}
 	} else {
-		while (gCtx.measureText(sentence).width < gElCanvas.width) {
+		while (gCtx.measureText(sentence).width <= gElCanvas.width) {
 			size++
 			gCtx.font = `${size}px ${font}`
 		}
 	}
 	if (size > 200) size = 200
+	line.isAutoFitSize = false
 	return size
 }
 
@@ -97,6 +99,7 @@ function setFontSize(num) {
 
 function alignTxt(side) {
 	const line = getCurrLine()
+	console.log(line)
 	const pos = line.pos
 	const { width } = getLineMetrics(getCurrLine())
 	switch (side) {
@@ -141,12 +144,13 @@ function createNewLine(txt = getRandSentence(memesSentences)) {
 		size: 200,
 		align: 'center',
 		color: 'white',
+		strokeColor: 'black',
 		font: 'Impact',
-		pos: { x: 250, y: 250 },
+		pos: { x: gElCanvas.width / 2, y: gElCanvas.height / 2 },
 		isDrag: false,
-		isExport: false
+		isExport: false,
+		isAutoFitSize: true
 	})
-	gMeme.isAutoFitSize = true
 	gMeme.selectedLineIdx = gMeme.lines.length - 1 //set last added line to current
 }
 
@@ -168,4 +172,13 @@ function setLineDrag(bol) {
 
 function getCurrLine() {
 	return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function getLineMetrics(line) {
+	const metrics = line.metrics
+	const width = metrics.width
+	const height = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+	const x = line.pos.x - metrics.actualBoundingBoxLeft
+	const y = line.pos.y - metrics.actualBoundingBoxAscent
+	return { x, y, width, height }
 }

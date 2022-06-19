@@ -4,14 +4,7 @@
 /*
 remove globals from controller
 add min font size
-add reset inputs functions
-stroke color bug
-auto-fit bug
 */
-const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
-let gElCanvas
-let gCtx
-let gInterval
 
 function initCanvas() {
 	gElCanvas = document.querySelector('.edit-modal canvas')
@@ -133,7 +126,6 @@ function renderMeme() {
 	const id = getMeme().selectedImgId
 	const meme = getMeme(id)
 	const img = setImg(id)
-	// console.log(img)
 	renderImg(img)
 	renderLines(meme)
 }
@@ -154,7 +146,7 @@ function renderLines(meme) {
 		if (sentence === '') return
 		const { x, y } = line.pos
 		gCtx.font = `${line.size}px ${line.font}`
-		line.size = fitFontSize(sentence, line.font, line.size)
+		line.size = fitFontSize(line, sentence, line.font, line.size)
 		gCtx.lineWidth = 4
 		gCtx.strokeStyle = line.strokeColor
 		gCtx.fillStyle = line.color
@@ -165,18 +157,20 @@ function renderLines(meme) {
 		gCtx.strokeText(sentence, x, y)
 		gCtx.fillText(sentence, x, y)
 	})
-	gMeme.isAutoFitSize = false
+
 	drawLineSelection()
 }
 
 function onSetLineTxt() {
-	const txt = document.querySelector('.txt-input').value
-	setLineTxt(txt)
+	const txt = document.querySelector('.txt-input')
+	setLineTxt(txt.value)
+	txt.value = ''
 }
 
 function onShowLineTxt() {
 	const txt = document.querySelector('.txt-input').value
 	setLineTxt(txt)
+	getCurrLine().isAutoFitSize = true
 	renderMeme()
 }
 
@@ -243,15 +237,6 @@ function onDeleteLine() {
 
 	const meme = getMeme()
 	meme.selectedLineIdx--
-}
-
-function getLineMetrics(line) {
-	const metrics = line.metrics
-	const width = metrics.width
-	const height = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
-	const x = line.pos.x - metrics.actualBoundingBoxLeft
-	const y = line.pos.y - metrics.actualBoundingBoxAscent
-	return { x, y, width, height }
 }
 
 function drawLineSelection() {
